@@ -1,0 +1,2915 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Deutsch: Literatur Phase 8 Mindeststandard - Krummer Hund</title>
+  <style>
+    :root {
+      --ink: #232323;
+      --muted: #676767;
+      --line: #d8d8d8;
+      --paper: #ffffff;
+      --soft: #f6f1f1;
+      --accent: #b51f2e;
+      --accent-dark: #831522;
+      --accent-soft: #fff0f2;
+      --gold: #f1b44c;
+      --teal: #137c78;
+      --blue: #285b8f;
+      --green: #257247;
+      --danger: #9f1d25;
+      --shadow: 0 16px 34px rgba(35, 35, 35, .14);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: rgba(0,0,0,0.06); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+      background:
+        linear-gradient(180deg, rgba(181, 31, 46, .95) 0 158px, transparent 158px),
+        linear-gradient(180deg, #eeeeee 0, #ffffff 44%, #f3f3f3 100%);
+    }
+
+    button, input, select, textarea { font: inherit; touch-action: manipulation; }
+    button { cursor: pointer; }
+    img { max-width: 100%; display: block; }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 306px minmax(0, 1fr);
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      max-height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 16px;
+      background: #fff;
+      border-right: 1px solid var(--line);
+    }
+
+    .brand {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 2px solid rgba(181, 31, 46, .28);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: inset 0 0 0 6px #f3f3f3;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      border-radius: 7px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.04rem;
+      line-height: 1.18;
+    }
+
+    .brand p, .small-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .progress-box {
+      margin: 16px 0 14px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 800;
+      font-size: .92rem;
+    }
+
+    .bar {
+      height: 10px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: #eadfe1;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      transition: width .25s ease;
+    }
+
+    .reset-progress-button {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 10px;
+      padding: 9px 10px;
+      border: 1px solid rgba(181,31,46,.35);
+      border-radius: var(--radius);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .nav-group { margin-top: 15px; }
+    .nav-group h2 {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      margin: 5px 0;
+      padding: 8px 9px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .nav-button:hover,
+    .nav-button:focus,
+    .nav-button.active {
+      border-color: rgba(181,31,46,.34);
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .nav-button.active { font-weight: 850; }
+
+    .nav-number {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #f0e5e7;
+      color: var(--accent-dark);
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    .nav-button.active .nav-number {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .done-mark {
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 900;
+      opacity: 0;
+    }
+
+    .nav-button.done .done-mark { opacity: 1; }
+
+    main { min-width: 0; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      min-height: 76px;
+      padding: 10px 22px;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(60, 0, 8, .24);
+    }
+
+    .title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .icon-strip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+    }
+
+    .top-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 7px;
+      object-fit: cover;
+      background: #fff;
+      border: 2px solid rgba(255,255,255,.88);
+      box-shadow: 0 3px 9px rgba(0,0,0,.22);
+    }
+
+    .topbar h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .path {
+      color: rgba(255,255,255,.82);
+      font-size: .9rem;
+      font-weight: 650;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .right-icons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 4px;
+    }
+
+    .right-icon {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 7px;
+      background: #fff;
+      border: 2px solid rgba(255,255,255,.88);
+      box-shadow: 0 3px 9px rgba(0,0,0,.22);
+    }
+
+    .action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      font-weight: 850;
+      font-size: 16px;
+    }
+
+    .action.light {
+      background: #fff;
+      color: var(--accent-dark);
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 24px 26px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #271b1b;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-inner {
+      min-height: 315px;
+      display: grid;
+      grid-template-columns: minmax(310px, .92fr) minmax(360px, 1.08fr);
+      gap: 26px;
+      align-items: stretch;
+      background:
+        linear-gradient(90deg, rgba(25,16,16,.92), rgba(25,16,16,.72) 50%, rgba(25,16,16,.16)),
+        url("../assets/img/Hintergrund_wutrot-neu.jpg") center/cover;
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      padding: 30px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(1.75rem, 3.4vw, 3.1rem);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 56ch;
+      margin: 0;
+      color: rgba(255,255,255,.9);
+      font-size: 1.02rem;
+    }
+
+    .hero-media {
+      align-self: end;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 24px;
+    }
+
+    .hero-card {
+      min-height: 130px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .hero-card span {
+      display: block;
+      padding: 8px 10px 10px;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stamp-card {
+      min-height: 152px;
+      display: grid;
+      grid-template-rows: 82px 1fr;
+      overflow: hidden;
+      border: 1px solid rgba(181,31,46,.28);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(35,35,35,.08);
+      text-align: left;
+      cursor: pointer;
+      border: none;
+      color: inherit;
+      font: inherit;
+    }
+
+    .stamp-card img {
+      width: 100%;
+      height: 82px;
+      object-fit: cover;
+    }
+
+    .stamp-body {
+      padding: 10px;
+    }
+
+    .stamp-body strong {
+      display: block;
+      color: var(--accent-dark);
+      line-height: 1.22;
+    }
+
+    .stamp-body span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .target-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .target-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      min-height: 74px;
+      padding: 11px;
+      border: 1px solid rgba(181,31,46,.18);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fff, #fff8f9);
+    }
+
+    .target-list li::before {
+      content: "";
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      border: 2px solid rgba(181,31,46,.52);
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .target-list strong {
+      display: block;
+      color: var(--accent-dark);
+      line-height: 1.25;
+    }
+
+    .target-list span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 750;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(35,35,35,.07);
+    }
+
+    .section h2,
+    .section h3 {
+      margin: 0 0 10px;
+      line-height: 1.18;
+    }
+
+    .station-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      align-items: stretch;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .station-info {
+      padding: 20px;
+    }
+
+    .station-info h2 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 1.75rem;
+      line-height: 1.1;
+    }
+
+    .station-image {
+      width: 100%;
+      height: 100%;
+      min-height: 230px;
+      object-fit: cover;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f0f0f0;
+      color: var(--ink);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    .pill.m { background: #fff0f2; color: var(--accent-dark); }
+    .pill.r { background: #eaf4f3; color: #0a625f; }
+
+    .goal-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .goal-list li {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      padding: 9px;
+      border-radius: var(--radius);
+      background: #f7f7f7;
+      font-size: .93rem;
+    }
+
+    .goal-list li::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      border: 2px solid rgba(181,31,46,.5);
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .task-card {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(35,35,35,.06);
+    }
+
+    .task-card.full { grid-column: 1 / -1; }
+
+    .task-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .task-title {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .task-meta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f1f1f1;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .task-card img.inline-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+
+    .task-audio-panel {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid rgba(181,31,46,.22);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fff, #fff7f8);
+    }
+
+    .task-audio-panel img {
+      width: 112px;
+      height: 82px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .task-audio-panel strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-dark);
+      line-height: 1.22;
+    }
+
+    .task-audio-panel span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 750;
+    }
+
+    .operator-help {
+      padding: 9px 10px;
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-size: .9rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .operator-help strong {
+      color: var(--accent-dark);
+    }
+
+    .choice-list,
+    .quiz-options {
+      display: grid;
+      gap: 8px;
+    }
+
+    label.option {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fafafa;
+      cursor: pointer;
+    }
+
+    label.option.correct { border-color: rgba(37,114,71,.55); background: #edf8f1; }
+    label.option.wrong { border-color: rgba(159,29,37,.55); background: #fff0f2; }
+
+    .assign-row,
+    .order-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 10px;
+      align-items: center;
+      margin: 8px 0;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fafafa;
+    }
+
+    select,
+    input[type="text"],
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid #cfcfcf;
+      border-radius: var(--radius);
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    .cloze-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      padding: 10px;
+      border-radius: var(--radius);
+      background: #fafafa;
+      border: 1px solid var(--line);
+    }
+
+    .cloze-line input {
+      width: 150px;
+      min-height: 44px;
+      font-size: 16px;
+    }
+
+    .check-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-top: 2px;
+    }
+
+    .check-btn,
+    .station-done-btn,
+    .quiz-btn {
+      min-height: 44px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--accent-dark);
+    }
+
+    .feedback {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
+    .feedback.good { color: var(--green); }
+    .feedback.bad { color: var(--danger); }
+
+    .media-panel {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f8f8f8;
+    }
+
+    .media-panel img {
+      width: 120px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    audio { width: 100%; }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .figure-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .figure-card img {
+      width: 100%;
+      height: 135px;
+      object-fit: cover;
+    }
+
+    .figure-card strong {
+      display: block;
+      padding: 8px 9px 1px;
+      color: var(--accent-dark);
+    }
+
+    .figure-card span {
+      display: block;
+      min-height: 52px;
+      padding: 0 9px 9px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .quiz-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .quiz-score {
+      padding: 14px;
+      border-radius: var(--radius);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 900;
+      text-align: left;
+    }
+
+    .quiz-score-main {
+      display: block;
+      font-size: 1.18rem;
+      line-height: 1.18;
+    }
+
+    .quiz-score-detail {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    .quiz-feedback-message {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(181,31,46,.2);
+      color: var(--ink);
+      font-size: .9rem;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .quiz-feedback-title {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--accent-dark);
+      font-size: .78rem;
+      font-weight: 950;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .quiz-recommendation,
+    .quiz-next-step {
+      margin-top: 10px;
+      padding: 9px;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      line-height: 1.35;
+    }
+
+    .quiz-recommendation {
+      background: #edf8f1;
+      color: var(--green);
+      border: 1px solid rgba(37,114,71,.28);
+    }
+
+    .quiz-next-step {
+      background: #fff8e9;
+      color: #7a4e00;
+      border: 1px solid rgba(241,180,76,.36);
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .quiz-card {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .quiz-card.correct { border-color: rgba(37,114,71,.45); box-shadow: inset 4px 0 0 var(--green); }
+    .quiz-card.wrong { border-color: rgba(159,29,37,.45); box-shadow: inset 4px 0 0 var(--danger); }
+
+    .quiz-question-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 0;
+      font-weight: 850;
+      line-height: 1.32;
+    }
+
+    .level {
+      display: inline-grid;
+      place-items: center;
+      min-width: 30px;
+      height: 24px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+
+    .level.m { background: var(--accent); }
+    .level.r { background: var(--teal); }
+
+    .footer {
+      margin-top: 28px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 16px;
+      font-size: .88rem;
+    }
+
+    .license-box {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .license-dot {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--accent-dark);
+      font-size: .72rem;
+      font-weight: 950;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 1fr; }
+      .side {
+        position: static;
+        height: auto;
+        max-height: none;
+        border-right: 0;
+ border-bottom: 1px solid var(--line);
+      }
+      .hero-inner,
+      .station-header,
+      .quiz-top {
+        grid-template-columns: 1fr;
+      }
+      .hero-media { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-grid,
+      .task-grid,
+      .quiz-grid,
+      .target-list,
+      .goal-list,
+      .figure-grid {
+        grid-template-columns: 1fr;
+      }
+      .station-image { max-height: 260px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .content { padding: 22px 14px; }
+      .hero-copy { padding: 22px; }
+      .hero-media { grid-template-columns: 1fr; padding: 0 22px 22px; }
+      .assign-row,
+      .order-row,
+      .task-audio-panel,
+      .media-panel,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .icon-strip .top-icon:nth-child(n+4) { display: none; }
+    }
+  </style>
+  
+
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="brand-row">
+          <img class="brand-icon" src="../assets/img/Daniel_mit_Ozzy-neu.jpg" alt="Daniel mit Ozzy">
+          <div>
+            <h1>Stempelkarte<br>Deutsch M8</h1>
+            <p>Krummer Hund verstehen</p>
+          </div>
+        </div>
+        <p class="small-note">Bearbeite die Stationen in deinem Tempo. Die Aufgaben sichern vor allem den Mindeststandard.</p>
+      </div>
+
+      <div class="progress-box">
+        <div class="progress-title">
+          <span>Fortschritt</span>
+          <span id="progressText">0 von 9</span>
+        </div>
+        <div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
+        <button class="reset-progress-button" id="resetProgressBtn" type="button">Fortschritt zurücksetzen</button>
+      </div>
+
+      <nav class="nav-group" aria-label="Stationen">
+        <h2>Stationen</h2>
+        <div id="stationNav"></div>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="title-wrap">
+          <div class="icon-strip" aria-hidden="true">
+            <img class="top-icon" src="../assets/img/Daniel-neu.jpg" alt="">
+            <img class="top-icon" src="../assets/img/Ozzy-neu.jpg" alt="">
+            <img class="top-icon" src="../assets/img/Alina-neu.jpg" alt="">
+            <img class="top-icon" src="../assets/img/Edgar-neu.jpg" alt="">
+          </div>
+          <div>
+            <h2>Deutsch: Literatur Phase 8 Mindeststandard (Juliane Pickel: Krummer Hund)</h2>
+            <div class="path" id="currentPath">Überblick</div>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="right-icons" aria-label="Schul- und Bibliotheksicons">
+            <img class="right-icon" src="../assets/img/asw-logo.png" alt="ASW Logo">
+            <img class="right-icon" src="../assets/img/bibliothek-icon.png" alt="Literatur Icon">
+          </div>
+          <button class="action" id="overviewBtn" type="button">Überblick</button>
+          <button class="action light hidden" id="stationDoneBtn" type="button">Station abhaken</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="hero" id="overview">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Mindeststandard: wiedergeben, ordnen, sichern</span>
+              <h2>Eine interaktive Lesereise durch das Buch "Krummer Hund"</h2>
+              <p>Du wiederholst Figuren, Kapitel, Konflikte und wichtige Themen. Jede Station nutzt andere Aufgabenformen, damit du den Buchinhalt nicht nur anklickst, sondern wirklich sortierst und sicherst.</p>
+ <div class="pill-row">
+                <span class="pill m">15+ M-Aufgaben im Lernteil</span>
+                <span class="pill r">5 R-Aufgaben im Abschlusstest</span>
+                <span class="pill">mit Bildern und Hörtexten</span>
+              </div>
+            </div>
+            <div class="hero-media">
+              <div class="hero-card">
+                <img src="../assets/img/Daniel_mit_Ozzy-neu.jpg" alt="Daniel mit Ozzy">
+                <span>Ozzy als Auslöser der Handlung</span>
+              </div>
+              <div class="hero-card">
+                <img src="../assets/img/Alina_mit_den_zwei_Gesichtern-neu.jpg" alt="Alina mit zwei Seiten">
+                <span>Alina hinter der Fassade</span>
+              </div>
+              <div class="hero-card">
+                <img src="../assets/img/Edgars_Skizzenbuch-neu.jpg" alt="Edgars Skizzenbuch">
+                <span>Edgars Blick auf die Welt</span>
+              </div>
+              <div class="hero-card">
+                <img src="../assets/img/Lotus-neu.jpg" alt="Lotus">
+                <span>Hinweise, Verdacht und Beweise</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="targetOverview">
+          <h2>Teillernziele im Mindeststandard</h2>
+          <p class="small-note">Diese Ziele kannst du nach und nach abhaken. Sie zeigen dir, ob du den Buchinhalt grundlegend sicher wiedergeben, ordnen und anwenden kannst.</p>
+          <ul class="target-list">
+            <li><div><strong>Ich kenne die bedeutsamsten Operatoren.</strong><span>Materialien: 3, 4, 5, 6, 7, 9</span></div></li>
+            <li><div><strong>Ich kann einfache Fragen unter Berücksichtigung der Operatoren beantworten.</strong><span>Materialien: 3, 4, 5, 6, 7, 9</span></div></li>
+            <li><div><strong>Ich kann grundlegendes Wissen über die Inhalte des Buches nachweisen.</strong><span>Materialien: 1 bis 9</span></div></li>
+            <li><div><strong>Ich kann die wichtigsten Figuren benennen und einfache Beziehungen zuordnen.</strong><span>Materialien: 2, 3, 4, 5, 6, 7</span></div></li>
+            <li><div><strong>Ich kann zentrale Ereignisse der Leseetappen in der richtigen Reihenfolge wiedergeben.</strong><span>Materialien: 3, 4, 5, 6, 7</span></div></li>
+ <li><div><strong>Ich kann wichtige Orte, Gegenstände und Hinweise passenden Figuren oder Ereignissen zuordnen.</strong><span>Materialien: 3, 4, 5, 6, 7, 9</span></div></li>
+            <li><div><strong>Ich kann zentrale Themen wie Trauer, Vertrauen, Freundschaft, Verdacht und Verantwortung an einfachen Romanbeispielen wiedererkennen.</strong><span>Materialien: 3 bis 9</span></div></li>
+          </ul>
+        </section>
+
+        <section class="section" id="stampOverview">
+          <h2>Deine Stempelkarte</h2>
+          <p class="small-note">Die Kacheln führen dich durch die Materialien: Operatoren, Figuren, fünf Leseetappen, Themen und am Ende ein gemischtes "Teste dein Wissen".</p>
+          <div class="overview-grid" id="stampGrid"></div>
+        </section>
+
+        <section id="stationArea"></section>
+        <section id="quizArea" class="section hidden"></section>
+
+        <footer class="footer">
+          <div class="footer-inner">
+            <div>
+              <strong>Autor: Christian Schwend</strong>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function getStorage(key, fallback) {
+      try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch(e) { return fallback; }
+    }
+    function setStorage(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch(e) {}
+    }
+    function removeStorage(key) {
+      try { localStorage.removeItem(key); } catch(e) {}
+    }
+
+    const stations = [
+      {
+        id: "operatoren",
+        nav: "So arbeite ich",
+        title: "Station 0: Aufgaben verstehen",
+        image: "../assets/img/Polizeiausweis-neu.jpg",
+        focus: "Bevor du den Roman sicherst, prüfst du die wichtigsten Arbeitsaufträge.",
+        goals: [
+          "Ich kann die Operatoren nennen, beschreiben, erklären, begründen, zusammenfassen, sortieren und zuordnen unterscheiden.",
+          "Ich kann erkennen, welche Art Antwort eine Aufgabe verlangt.",
+          "Ich kann Inhaltsfragen in ganzen Sätzen passend zum Operator beantworten."
+        ],
+        tasks: [
+          {
+            type: "assign",
+            title: "Operatoren zuordnen",
+            meta: "M - Begriffe sichern",
+            prompt: "Ordne jedem Operator die passende Handlung zu.",
+            options: ["Informationen kurz aufzählen", "Merkmale in Sätzen darstellen", "Zusammenhänge deutlich machen", "Eine Aussage mit Grund oder Beleg absichern", "Das Wichtigste knapp wiedergeben", "In eine richtige Reihenfolge bringen", "Passende Paare bilden"],
+            items: [
+              { left: "nennen", answer: "Informationen kurz aufzählen" },
+              { left: "beschreiben", answer: "Merkmale in Sätzen darstellen" },
+              { left: "erklären", answer: "Zusammenhänge deutlich machen" },
+              { left: "begründen", answer: "Eine Aussage mit Grund oder Beleg absichern" },
+              { left: "zusammenfassen", answer: "Das Wichtigste knapp wiedergeben" },
+              { left: "sortieren", answer: "In eine richtige Reihenfolge bringen" },
+              { left: "zuordnen", answer: "Passende Paare bilden" }
+            ]
+          },
+          {
+            type: "single",
+            title: "Welche Antwort passt?",
+            meta: "M - Aufgaben lesen",
+            prompt: "Die Aufgabe lautet: Nenne drei wichtige Personen in Daniels Leben. Welche Antwortform passt am besten?",
+            options: [
+              "Daniel, Edgar, Ozzy.",
+              "Daniel ist oft wütend, weil Ozzy stirbt.",
+              "Ich finde Edgar wichtig, weil er nett ist.",
+              "Der Roman handelt von vielen Problemen."
+            ],
+            answer: 0
+          },
+          {
+            type: "assign",
+            title: "Operator und Satzanfang",
+            meta: "M - Antwortform planen",
+            prompt: "Ordne jedem Operator einen passenden Satzanfang zu. So erkennst du, wie deine Antwort aufgebaut sein soll.",
+            options: ["Im Roman kommen vor allem ... vor.", "Daniel reagiert ..., danach ...", "Das liegt daran, dass ...", "Dafür spricht, dass ...", "Kurz gesagt geht es darum, dass ..."],
+            items: [
+              { left: "nennen", answer: "Im Roman kommen vor allem ... vor." },
+              { left: "beschreiben", answer: "Daniel reagiert ..., danach ..." },
+              { left: "erklären", answer: "Das liegt daran, dass ..." },
+              { left: "begründen", answer: "Dafür spricht, dass ..." },
+              { left: "zusammenfassen", answer: "Kurz gesagt geht es darum, dass ..." }
+ ]
+          },
+          {
+            type: "text",
+            title: "Nennen: Figuren sichern",
+            meta: "M - Operator anwenden",
+            operatorHelp: "Nennen bedeutet: Gib die gefragten Informationen knapp und vollständig an. Ein kurzer Satz reicht.",
+            prompt: "Operator: Nenne in einem vollständigen Satz drei wichtige Figuren aus Krummer Hund.",
+            min: 35,
+            sentenceMin: 1,
+            keywordMin: 3,
+            keywords: ["daniel", "edgar", "ozzy", "alina", "doc", "mutter", "vater"],
+            solution: "Möglich ist: Wichtige Figuren sind Daniel, Edgar, Ozzy, Alina und der Doc."
+          },
+          {
+            type: "text",
+            title: "Beschreiben: Daniels Reaktion",
+            meta: "M - Operator anwenden",
+            operatorHelp: "Beschreiben bedeutet: Stelle Merkmale oder Handlungen anschaulich in Sätzen dar, ohne schon lange zu deuten.",
+            prompt: "Operator: Beschreibe in zwei Sätzen, wie Daniel auf Ozzys Tod reagiert.",
+            min: 80,
+            sentenceMin: 2,
+            keywordMin: 2,
+            keywords: ["daniel", "ozzy", "traurig", "wut", "grab", "vater", "verlust"],
+            solution: "Daniel ist nach Ozzys Tod traurig und wütend. Er begrabt Ozzy und denkt dabei auch an seinen Vater."
+          },
+          {
+            type: "text",
+            title: "Erklären: Doc verstehen",
+            meta: "R - Operator anwenden",
+            operatorHelp: "Erklären bedeutet: Mache einen Zusammenhang deutlich. Nutze zum Beispiel weil, deshalb oder dadurch.",
+            prompt: "Operator: Erkläre in zwei Sätzen, warum Daniel dem Doc am Anfang misstraut.",
+            min: 90,
+            sentenceMin: 2,
+            keywordMin: 2,
+            keywords: ["doc", "mutter", "ozzy", "vater", "männer", "misstrauen", "verlust"],
+            solution: "Daniel misstraut dem Doc, weil er den neuen Mann an der Seite seiner Mutter als Bedrohung erlebt. Ausserdem begegnet ihm der Doc genau in der Situation, in der Ozzy stirbt."
+          },
+          {
+            type: "text",
+            title: "Begründen: Ozzy einordnen",
+            meta: "R - Operator anwenden",
+            operatorHelp: "Begründen bedeutet: Stelle eine Aussage auf und sichere sie mit einem Grund oder einem Beispiel aus dem Roman.",
+            prompt: "Operator: Begründe in zwei Sätzen, warum Ozzy für Daniel mehr als nur ein Hund ist.",
+            min: 90,
+            sentenceMin: 2,
+            keywordMin: 2,
+            keywords: ["ozzy", "vater", "erinnerung", "sicherheit", "verlust", "bindung", "daniel"],
+            solution: "Ozzy ist für Daniel mehr als nur ein Hund, weil er ihn mit seinem Vater verbindet. Als Ozzy stirbt, verliert Daniel deshalb auch ein Stück Sicherheit und Erinnerung."
+          },
+          {
+            type: "text",
+            title: "Zusammenfassen: Anfang des Romans",
+            meta: "M/R - Operator anwenden",
+            operatorHelp: "Zusammenfassen bedeutet: Gib nur das Wichtigste in eigenen Worten wieder. Einzelheiten lässt du weg.",
+            prompt: "Operator: Fasse in drei Sätzen zusammen, was am Anfang des Romans passiert.",
+            min: 120,
+            sentenceMin: 3,
+            keywordMin: 3,
+            keywords: ["ozzy", "daniel", "doc", "mutter", "edgar", "alina", "wut"],
+            solution: "Am Anfang stirbt Ozzys Hund Ozzy, der für Daniel sehr wichtig ist. Gleichzeitig wird der Doc als neuer Mann der Mutter zu einer Reizfigur. Daniel erlebt Trauer, Wut und erste Konflikte mit anderen Figuren."
+          },
+          {
+            type: "text",
+            title: "Kurz erklären",
+            meta: "R - einfacher Bezug",
+            operatorHelp: "Erklären bedeutet: Zeige, warum etwas hilfreich oder wichtig ist.",
+            prompt: "Erkläre in einem Satz: Warum hilft es, Kapitelereignisse in der richtigen Reihenfolge zu kennen?",
+            min: 45,
+            sentenceMin: 1,
+            keywords: ["handlung", "verstehen", "zusammenhang", "folge", "reihenfolge"],
+            solution: "Wenn ich die Reihenfolge kenne, verstehe ich besser, warum eine Figur später so handelt."
+          }
+        ]
+      },
+      {
+        id: "figuren",
+        nav: "Figuren",
+        title: "Station 1: Figuren kennenlernen",
+        image: "../assets/img/Daniel-neu.jpg",
+        focus: "Du sicherst die wichtigsten Figuren, ihre Beziehung zu Daniel und ihre Funktion für die Handlung.",
+        goals: [
+          "Ich kann zentrale Figuren benennen.",
+          "Ich kann einfache Beziehungen zwischen den Figuren wiedergeben."
+        ],
+        introHtml: `
+          <div class="figure-grid">
+            <div class="figure-card"><img src="../assets/img/Daniel-neu.jpg" alt="Daniel"><strong>Daniel</strong><span>Ich-Erzähler, kämpft mit Wut, Trauer und Verlust.</span></div>
+            <div class="figure-card"><img src="../assets/img/Ozzy-neu.jpg" alt="Ozzy"><strong>Ozzy</strong><span>Hund und letzte starke Verbindung zu Daniels Vater.</span></div>
+            <div class="figure-card"><img src="../assets/img/Edgar-neu.jpg" alt="Edgar"><strong>Edgar</strong><span>Daniels bester Freund, sensibel und künstlerisch.</span></div>
+            <div class="figure-card"><img src="../assets/img/Alina-neu.jpg" alt="Alina"><strong>Alina</strong><span>Wirkt zuerst wie eine Gegnerin, wird später anders sichtbar.</span></div>
+            <div class="figure-card"><img src="../assets/img/Doc-neu.jpg" alt="Doc"><strong>Doc</strong><span>Thomas König, Tierarzt und neuer Partner der Mutter.</span></div>
+            <div class="figure-card"><img src="../assets/img/Daniels_Mutter-neu.jpg" alt="Daniels Mutter"><strong>Daniels Mutter</strong><span>Sie liebt Daniel, erreicht ihn aber oft nicht.</span></div>
+            <div class="figure-card"><img src="../assets/img/Daniels_Vater-neu.jpg" alt="Daniels Vater"><strong>Daniels Vater</strong><span>Abwesende Vaterfigur, die Daniel lange idealisiert.</span></div>
+            <div class="figure-card"><img src="../assets/img/Felix-neu.jpg" alt="Felix"><strong>Felix</strong><span>Jüngerer Schüler, an dem Daniels Wut sichtbar eskaliert.</span></div>
+          </div>
+        `,
+        tasks: [
+          {
+            type: "assign",
+            title: "Figur und Funktion",
+            meta: "M - Figurenwissen",
+            prompt: "Ordne die genauere Funktion im Roman der passenden Figur zu.",
+            options: ["Daniel", "Ozzy", "Edgar", "Alina", "Doc", "Daniels Mutter", "Daniels Vater"],
+            items: [
+              { left: "erzählt die Geschichte aus der Ich-Perspektive und bewertet vieles sehr subjektiv", answer: "Daniel" },
+              { left: "ist für Daniel Erinnerung an den Vater, Sicherheit und Verlust zugleich", answer: "Ozzy" },
+              { left: "ist bester Freund, künstlerisch und spürt Daniels Veränderung früh", answer: "Edgar" },
+              { left: "wird zuerst als Feindin gesehen, später aber verletzlicher gezeigt", answer: "Alina" },
+              { left: "ist Tierarzt, neuer Partner der Mutter und wird für Daniel zur Reizfigur", answer: "Doc" },
+              { left: "ist abwesend, wird von Daniel aber lange verklärt", answer: "Daniels Vater" }
+ ]
+          },
+          {
+            type: "multiple",
+            title: "Daniel, Ozzy und der Vater",
+            meta: "M - Aussagen prüfen",
+            prompt: "Welche Aussagen passen genau zu Daniels Beziehung zu Ozzy?",
+            options: [
+              "Ozzy erinnert Daniel an seinen Vater.",
+              "Ozzy ist für Daniel ein Stück Sicherheit in einer unsicheren Familiensituation.",
+              "Ozzys Tod löst bei Daniel Trauer und Wut aus.",
+              "Ozzy ist für Daniel vor allem wichtig, weil der Doc ihn mag.",
+              "Ozzys Tod verstärkt Daniels Konflikt mit seiner Mutter."
+            ],
+            answers: [0, 1, 2, 4]
+ },
+          {
+            type: "cloze",
+            title: "Beziehungsnetz ergänzen",
+            meta: "M - Lückentext",
+            prompt: "Ergänze die passenden Namen oder Bezeichnungen.",
+            parts: ["Daniels bester Freund heisst ", ". Thomas König nennt Daniel meist ", ". ", " ist für Daniel zuerst Princess Evil. Der tote Hund ", " verbindet Daniel mit seinem Vater."],
+            answers: [["Edgar"], ["Doc", "der Doc"], ["Alina"], ["Ozzy"]]
+          },
+          {
+            type: "multiple",
+            title: "Alina nicht nur Princess Evil",
+            meta: "M - Veränderung erkennen",
+            prompt: "Welche Aussagen zeigen, dass Alina im Verlauf nicht nur als Gegnerin erscheint?",
+            options: [
+              "Daniel erkennt, dass Alinas Leben hinter der reichen Fassade schwierig ist.",
+              "Alina bleibt bis zum Ende ausschliesslich eine sadistische Feindfigur.",
+              "Der Tod ihres Bruders Pascal macht ihre verletzliche Seite sichtbar.",
+              "Daniel und Alina haben Berührungspunkte, weil beide mit Verlust umgehen müssen.",
+              "Alina wird wichtig, weil sie Daniels Hund ersetzt."
+            ],
+            answers: [0, 2, 3]
+          },
+          {
+            type: "assign",
+            title: "Beziehungen zu Daniel",
+            meta: "M - Beziehungen zuordnen",
+            prompt: "Ordne jeder Figur die passende Beziehung oder Spannung zu Daniel zu.",
+            options: ["bester Freund", "Erinnerung an den Vater", "neuer Partner der Mutter", "zuerst Feindbild", "schwierige Nähe", "Auslöser für Daniels Wut"],
+ items: [
+              { left: "Edgar", answer: "bester Freund" },
+              { left: "Ozzy", answer: "Erinnerung an den Vater" },
+              { left: "Doc", answer: "neuer Partner der Mutter" },
+              { left: "Alina", answer: "zuerst Feindbild" },
+              { left: "Daniels Mutter", answer: "schwierige Nähe" },
+              { left: "Felix", answer: "Auslöser für Daniels Wut" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Figuren genau lesen",
+            meta: "M - Aussagen prüfen",
+            prompt: "Kreuze alle Aussagen an, die zu den Figuren und ihrer Funktion im Roman passen.",
+            options: [
+              "Edgar merkt, dass sich Daniel verändert.",
+              "Der Doc ist für Daniel sofort eine völlig unproblematische Vaterfigur.",
+              "Daniels Mutter erreicht Daniel nicht immer, obwohl sie ihm wichtig ist.",
+              "Alina wird erst später verletzlicher und vielschichtiger sichtbar.",
+              "Daniels Vater ist körperlich immer anwesend und erklärt Daniel alles."
+            ],
+            answers: [0, 2, 3]
+ },
+          {
+            type: "text",
+            title: "Figur in Sätzen beschreiben",
+            meta: "M/R - Operator: Beschreibe",
+            operatorHelp: "Beschreiben bedeutet: Nenne erkennbare Merkmale oder Handlungen der Figur und verbinde sie mit einem Romanbeispiel.",
+            prompt: "Operator: Beschreibe Daniel, Edgar oder Alina in zwei Sätzen. Nenne mindestens eine Beziehung zu einer anderen Figur.",
+            min: 80,
+            sentenceMin: 2,
+            keywordMin: 2,
+            keywords: ["daniel", "edgar", "alina", "ozzy", "doc", "mutter", "freund", "verlust", "trauer", "wut"],
+            solution: "Möglich ist: Daniel ist der Ich-Erzähler und reagiert oft mit Wut, weil er Ozzy und seinen Vater vermisst. Zu Edgar hat er eine enge Freundschaft, die durch Daniels Verhalten belastet wird."
+          }
+        ]
+      },
+      {
+        id: "etappe1",
+        nav: "Kapitel 1-7",
+        title: "Station 2: Leseetappe 1 - Kapitel 1 bis 7",
+        image: "../assets/img/Daniel_mit_Ozzy-neu.jpg",
+        focus: "Ozzy stirbt, Daniels Familiensituation wird sichtbar, der Doc tritt auf und Daniel/Edgar richten ihren Blick auf Alina.",
+        goals: [
+          "Ich kann die Ausgangssituation des Romans wiedergeben.",
+          "Ich kann Daniels erste Konflikte und Auslöser seiner Wut benennen."
+        ],
+        tasks: [
+          {
+            type: "order",
+            title: "Kapitel 1 bis 7 sicher ordnen",
+            meta: "M - Reihenfolge",
+            prompt: "Bringe die Ereignisse aus der ersten Leseetappe in die richtige Reihenfolge. Achte auf Ursache und Folge.",
+            items: [
+              { text: "Ozzy muss in der Tierarztpraxis eingeschläfert werden.", answer: 1 },
+              { text: "Daniel begräbt Ozzy und wünscht sich seinen Vater an seine Seite.", answer: 2 },
+              { text: "Der Doc begegnet Daniel als neuer Mann an der Seite der Mutter.", answer: 3 },
+              { text: "Edgar tröstet Daniel mit einer Zeichnung von Ozzy.", answer: 4 },
+              { text: "Daniel und Edgar beschreiben Alina als Princess Evil und beobachten sie.", answer: 5 },
+              { text: "Im Park eskaliert Daniels Wut gegenüber dem Mann und dessen Hund.", answer: 6 }
+ ]
+          },
+          {
+            type: "single",
+            title: "Ausgangssituation genau treffen",
+            meta: "M - Inhalt erkennen",
+            prompt: "Welche Zusammenfassung trifft Kapitel 1 am besten?",
+            image: "../assets/img/Ozzys_Grabstein-neu.jpg",
+            options: [
+              "Daniel wird in der Tierarztpraxis von Ozzys Tod getroffen; zugleich nimmt er wahr, wie seine Mutter den Doc beachtet.",
+              "Daniel plant mit Edgar bereits, den Unfall von Pascal aufzuklären.",
+              "Daniel begrüßt den Doc sofort als neuen Vaterersatz.",
+              "Daniel lernt Alina in der Tierarztpraxis kennen und nennt sie Princess Evil."
+            ],
+            answer: 0
+          },
+          {
+            type: "assign",
+            title: "Auslöser und Reaktion",
+            meta: "M - zuordnen",
+            prompt: "Ordne Daniels Gefühle oder Reaktionen dem passenden Auslöser zu.",
+            options: ["Trauer um Ozzy", "Misstrauen gegen den Doc", "Sehnsucht nach dem Vater", "Wut im Park", "Plan gegen Alina"],
+            items: [
+              { left: "Der Hund, der mit Daniels Vater verbunden ist, stirbt.", answer: "Trauer um Ozzy" },
+              { left: "Daniels Mutter interessiert sich für den Tierarzt.", answer: "Misstrauen gegen den Doc" },
+              { left: "Daniel wünscht sich in schwierigen Momenten den abwesenden Vater herbei.", answer: "Sehnsucht nach dem Vater" },
+              { left: "Ein anderer Hund erinnert Daniel an seinen Verlust.", answer: "Wut im Park" },
+              { left: "Daniel und Edgar beobachten Princess Evil.", answer: "Plan gegen Alina" }
+ ]
+          },
+          {
+            type: "multiple",
+            title: "Mutter, Männer, Muster",
+            meta: "M - Aussagen prüfen",
+            prompt: "Welche Aussagen geben Daniels Blick auf die Beziehungen seiner Mutter passend wieder?",
+            options: [
+              "Daniel erwartet, dass auch der neue Mann irgendwann wieder verschwindet.",
+              "Daniel hat erlebt, dass neue Partner schnell in den Alltag der Familie kommen.",
+              "Daniel fühlt sich durch das Verhalten seiner Mutter in der Tierarztpraxis gut aufgefangen.",
+              "Daniel beobachtet sehr genau, ob der Doc anders ist als frühere Männer.",
+              "Daniel weiss von Anfang an sicher, dass der Doc Pascal angefahren hat."
+            ],
+ answers: [0, 1, 3]
+          },
+          {
+            type: "assign",
+            title: "Kapitelüberschriften verbinden",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne den Kapitelüberschriften die passende Handlungsspur zu.",
+            options: ["Hundemörder", "Bye Bye Ozzy", "Dodge City", "Death = Tod", "Princess Evil", "Explosion", "100 Sachen"],
+            items: [
+              { left: "Ozzy stirbt in der Tierarztpraxis.", answer: "Hundemörder" },
+              { left: "Daniel begrabt Ozzy und verabschiedet sich.", answer: "Bye Bye Ozzy" },
+              { left: "Daniel und der Doc begegnen sich wie in einem Duell.", answer: "Dodge City" },
+              { left: "Daniel wacht auf und begreift Ozzys Tod neu.", answer: "Death = Tod" },
+              { left: "Alina wird als gemeine Mitschülerin sichtbar.", answer: "Princess Evil" },
+              { left: "Daniels Wut bricht im Park aus.", answer: "Explosion" },
+              { left: "Daniel denkt über Dinge nach, die mit der Mutter und ihren Männern zusammenhängen.", answer: "100 Sachen" }
+ ]
+          },
+          {
+            type: "single",
+            title: "Daniels Anfälle erkennen",
+            meta: "M - Operator: Wähle aus",
+            prompt: "Operator: Wähle die treffendste Beschreibung für Daniels Anfälle aus.",
+            options: [
+              "Daniel verliert in belastenden Situationen die Kontrolle über seine Wut und richtet Schaden an.",
+              "Daniel spielt anderen absichtlich nur Streiche, damit sie lachen.",
+              "Daniel bekommt immer Kopfschmerzen, sobald Mathematik beginnt.",
+              "Daniel schläft bei Konflikten sofort ein und erinnert sich an nichts."
+            ],
+            answer: 0
+          },
+          {
+            type: "multiple",
+            title: "Vater, Ozzy und Verlust",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die zu Daniels Vaterbild und Ozzy passen.",
+            options: [
+              "Ozzy erinnert Daniel an seinen Vater.",
+              "Daniel idealisiert seinen Vater zunächst stark.",
+              "Ozzys Tod berührt Daniel kaum, weil er nur ein Tier ist.",
+              "Der Verlust von Ozzy verstärkt Daniels Gefühl, allein zu sein.",
+              "Der Doc ersetzt Daniels Vater sofort ohne Konflikt."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "cloze",
+            title: "Grundkonflikt ergänzen",
+            meta: "M - Operator: Ergänze",
+            prompt: "Operator: Ergänze die zentralen Begriffe der ersten Leseetappe.",
+            parts: ["Der Tod von ", " löst bei Daniel Trauer und Wut aus. Der ", " wird für ihn zur Reizfigur, weil seine Mutter sich ihm zuwendet. Sein Freund ", " versucht Daniel auf eigene Weise zu trösten."],
+            answers: [["Ozzy"], ["Doc", "der Doc"], ["Edgar"]]
+ },
+          {
+            type: "assign",
+            title: "Figur und erste Spannung",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne jeder Figur die passende erste Spannung zu.",
+            options: ["Verlust und Erinnerung", "Misstrauen und Rivalität", "Freundschaft und Trost", "Feindbild und Beobachtung", "Unverstandensein"],
+            items: [
+              { left: "Ozzy", answer: "Verlust und Erinnerung" },
+              { left: "Doc", answer: "Misstrauen und Rivalität" },
+              { left: "Edgar", answer: "Freundschaft und Trost" },
+              { left: "Alina", answer: "Feindbild und Beobachtung" },
+              { left: "Daniels Mutter", answer: "Unverstandensein" }
+ ]
+          },
+          {
+            type: "order",
+            title: "Wutentwicklung sortieren",
+            meta: "M - Operator: Sortiere",
+            prompt: "Operator: Sortiere, wie sich Daniels Wut in dieser Leseetappe aufbaut.",
+            items: [
+              { text: "Daniel verliert Ozzy in der Tierarztpraxis.", answer: 1 },
+              { text: "Daniel fühlt sich von seiner Mutter nicht ausreichend gesehen.", answer: 2 },
+              { text: "Der Doc wird für Daniel zum Symbol für neue Bedrohung.", answer: 3 },
+              { text: "Ein anderer Hund erinnert Daniel im Park an seinen Verlust.", answer: 4 },
+              { text: "Daniels Wut entlädt sich gegen Mann und Hund.", answer: 5 }
+            ]
+          },
+          {
+            type: "text",
+            title: "Doc als Reizfigur",
+            meta: "R - Operator: Erkläre",
+            prompt: "Operator: Erkläre in zwei Sätzen, warum der Doc für Daniel schon früh eine Reizfigur ist.",
+            min: 90,
+            keywords: ["doc", "mutter", "ozzy", "männer", "misstrauen", "verlust"],
+            solution: "Der Doc ist für Daniel mit Ozzys Tod und mit dem Verhalten seiner Mutter verbunden. Weil Daniel frühere Männer der Mutter negativ erlebt hat, misstraut er auch dem Doc."
+          },
+          {
+            type: "text",
+            title: "Ozzy und Vater verbinden",
+            meta: "R - Operator: Beschreibe",
+            prompt: "Operator: Beschreibe in zwei Sätzen, wie Ozzys Tod mit Daniels Vaterbild zusammenhängt.",
+            min: 90,
+            keywords: ["ozzy", "vater", "verlust", "erinnerung", "bindung", "trauer"],
+            solution: "Ozzy erinnert Daniel an seinen Vater und ist deshalb mehr als ein Hund. Mit Ozzys Tod verliert Daniel auch ein wichtiges Stück Erinnerung und Sicherheit."
+          }
+        ]
+      },
+      {
+        id: "etappe2",
+        nav: "Kapitel 8-16",
+        title: "Station 3: Leseetappe 2 - Kapitel 8 bis 16",
+        image: "../assets/img/Park-neu.jpg",
+        focus: "Die Handlung wird ernster: Benno-Hütte, Party, Alkohol, Blackout, Pascals Unfall und erste Verdachtsmomente greifen ineinander.",
+        goals: [
+          "Ich kann die wichtigsten Ereignisse der zweiten Leseetappe sortieren.",
+          "Ich kann Personen, Orte und Hinweise passenden Situationen zuordnen."
+        ],
+        tasks: [
+          {
+            type: "assign",
+            title: "Kapitelspuren zuordnen",
+            meta: "M - Orientierung",
+            prompt: "Ordne die Hinweise der passenden Station der Handlung zu.",
+            options: ["Benno-Hütte", "Party", "Blackout", "Pascals Unfall", "Mr. Archer", "Statistik"],
+            items: [
+              { left: "Daniel und Edgar sprechen in einem Rückzugsort über Dinge, die sie belasten.", answer: "Benno-Hütte" },
+              { left: "Alina erscheint mit Pascal; Daniel und Edgar trinken und beobachten.", answer: "Party" },
+              { left: "Daniel kann sich an einen Teil des Abends nicht erinnern.", answer: "Blackout" },
+              { left: "Ein Auto fährt Pascal an und flieht.", answer: "Pascals Unfall" },
+              { left: "Ein Lehrer wird zum möglichen Verdächtigen.", answer: "Mr. Archer" }
+ ]
+          },
+          {
+            type: "multiple",
+            title: "Was ist sicher bekannt?",
+            meta: "M - Aussagen prüfen",
+            prompt: "Wähle nur die Aussagen aus, die zu dieser Leseetappe passen.",
+            options: [
+              "Pascal wird nach der Party angefahren.",
+              "Daniel hat einen Blackout.",
+              "Die Figuren haben sofort einen eindeutigen Beweis für den Täter.",
+              "Mr. Archer wird von manchen als verdächtig angesehen.",
+              "Daniel und Edgar interessieren sich weiter führe Alina.",
+              "Die Party bleibt folgenlos und hat mit der weiteren Handlung nichts zu tun."
+            ],
+            answers: [0, 1, 3, 4]
+          },
+          {
+            type: "order",
+            title: "Unfall-Folge sortieren",
+            meta: "M - Ablauf sichern",
+            prompt: "Sortiere die Ereignisse grob nach ihrem Ablauf.",
+            items: [
+              { text: "Edgar und Daniel sind in der Hütte und sprechen nicht offen über alles.", answer: 1 },
+              { text: "Auf der Party begegnen sie Alina und Pascal.", answer: 2 },
+              { text: "Daniel hat am nächsten Morgen Erinnerungslücken.", answer: 3 },
+              { text: "Die Nachricht von Pascals Unfall verbreitet sich in der Schule.", answer: 4 },
+              { text: "Es entstehen Gerüchte und Verdachtsmomente um mögliche Täter.", answer: 5 }
+            ]
+          },
+          {
+            type: "cloze",
+            title: "Unfallwissen sichern",
+            meta: "M - Lückentext",
+            prompt: "Ergänze die zentralen Informationen zur zweiten Leseetappe.",
+            parts: ["Alinas Bruder heisst ", ". Nach der Party wird er von einem ", " angefahren. Daniel kann sich wegen eines ", " nicht an alles erinnern."],
+            answers: [["Pascal"], ["Auto"], ["Blackout", "black out"]]
+          },
+          {
+            type: "assign",
+            title: "Kapitel 8 bis 16 zuordnen",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne den Kapitelspuren die passende Bedeutung für die Handlung zu.",
+            options: ["Rückzugsort", "Party und Beobachtung", "Doc im Haus", "Blackout", "Unfallnachricht", "Gerüchte und Verdacht", "Statistik"],
+            items: [
+              { left: "Benno-Hütte", answer: "Rückzugsort" },
+              { left: "Partymaterial", answer: "Party und Beobachtung" },
+              { left: "Sohn des Zeus", answer: "Doc im Haus" },
+              { left: "Blackout", answer: "Blackout" },
+              { left: "Archer und der Tod", answer: "Unfallnachricht" },
+              { left: "Kommissar Venner", answer: "Gerüchte und Verdacht" },
+              { left: "Statistik", answer: "Statistik" }
+            ]
+          },
+          {
+            type: "single",
+            title: "Funktion der Hütte",
+            meta: "M - Operator: Wähle aus",
+            prompt: "Operator: Wähle aus, welche Funktion Benno-Hütte für Daniel und Edgar hat.",
+            options: [
+              "Sie ist ein Rückzugsort, an dem die Freundschaft sichtbar wird und trotzdem nicht alles ausgesprochen wird.",
+              "Sie ist der Ort, an dem Pascal angefahren wird.",
+              "Sie ist Daniels neues Zuhause nach dem Streit mit der Mutter.",
+              "Sie ist der Beweis, dass Alina den Unfall verursacht hat."
+            ],
+            answer: 0 },
+          {
+            type: "multiple",
+            title: "Party genau prüfen",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die zur Party und ihren Folgen passen.",
+            options: [
+              "Daniel und Edgar gehen nicht nur aus Spass zur Party, sondern beobachten auch Alina.",
+              "Alina erscheint mit Pascal.",
+              "Nach der Party kann Daniel sich an alles klar erinnern.",
+              "Alkohol spielt für Daniels Erinnerungslücken eine Rolle.",
+              "Pascals Unfall verändert die Stimmung der Handlung deutlich."
+            ],
+            answers: [0, 1, 3, 4]
+          },
+          {
+            type: "order",
+            title: "Vom Feiern zum Verdacht",
+            meta: "M - Operator: Sortiere",
+            prompt: "Operator: Sortiere die Entwicklung von der Party bis zu den Verdachtsmomenten.",
+            items: [
+              { text: "Daniel und Edgar gehen zur Party.", answer: 1 },
+              { text: "Alina ist mit Pascal dort.", answer: 2 },
+              { text: "Daniel erlebt einen Blackout.", answer: 3 },
+              { text: "Pascal wird nach der Party angefahren.", answer: 4 },
+              { text: "In der Schule entstehen Gerüchte und Verdächtigungen.", answer: 5 }
+            ]
+          },
+          {
+            type: "assign",
+            title: "Personen im Verdachtsfeld",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne jeder Person die passende Rolle in dieser Leseetappe zu.",
+            options: ["Opfer des Unfalls", "möglicher Verdächtiger", "Gerüchtestreuer", "beobachtende Freunde", "betroffene Schwester"],
+            items: [
+              { left: "Pascal", answer: "Opfer des Unfalls" },
+              { left: "Mr. Archer", answer: "möglicher Verdächtiger" },
+              { left: "Falk Venner", answer: "Gerüchtestreuer" },
+              { left: "Daniel und Edgar", answer: "beobachtende Freunde" },
+              { left: "Alina", answer: "betroffene Schwester" }
+            ]
+          },
+          {
+            type: "cloze",
+            title: "Verdachtskette ergänzen",
+            meta: "M - Operator: Ergänze",
+            prompt: "Operator: Ergänze die Begriffe, mit denen die Verdachtskette beginnt.",
+            parts: ["Nach Pascals ", " suchen die Figuren nach Hinweisen. Weil Daniel einen ", " hat, ist seine Erinnerung unsicher. Auch ", " wird als möglicher Täter ins Spiel gebracht."],
+            answers: [["Unfall", "Tod"], ["Blackout", "black out"], ["Mr. Archer", "Archer"]]
+          },
+          {
+            type: "text",
+            title: "Blackout erklären",
+            meta: "R - Operator: Erkläre",
+            prompt: "Operator: Erkläre in zwei Sätzen, warum Daniels Blackout für die Handlung wichtig ist.",
+            min: 90,
+            keywords: ["blackout", "erinnerung", "party", "unsicher", "unfall", "hinweise"],
+            solution: "Der Blackout macht Daniels Erinnerung an den Abend unsicher. Dadurch kann er den Unfall und die Hinweise nicht einfach eindeutig einordnen."
+          },
+          {
+            type: "text",
+            title: "Verdacht gegen Mr. Archer",
+            meta: "R - Operator: Begründe",
+            prompt: "Operator: Begründe in zwei Sätzen, warum Mr. Archer in dieser Etappe als verdächtiger erscheinen kann.",
+            min: 90,
+            keywords: ["archer", "verdacht", "gerücht", "unfall", "lehrer", "hinweis"],
+            solution: "Mr. Archer wird durch Gerüchte und Hinweise mit dem Unfall in Verbindung gebracht. Für Daniel und die Klasse entsteht dadurch ein Verdachtsmoment, auch wenn noch kein sicherer Beweis vorliegt."
+          }
+        ]
+      },
+      {
+        id: "etappe3",
+        nav: "Kapitel 17-27",
+        title: "Station 4: Leseetappe 3 - Kapitel 17 bis 27",
+        image: "../assets/img/Alina_mit_den_zwei_Gesichtern-neu.jpg",
+        focus: "Daniel sieht Alina differenzierter. Gleichzeitig sammeln sich Hinweise, die den Doc oder Mr. Archer verdachtig wirken lassen, und Daniel entfernt sich von Edgar.",
+        goals: [
+          "Ich kann neue Informationen über Alina, Pascal und den Doc wiedergeben.",
+          "Ich kann Hinweise aus der Handlung passenden Figuren zuordnen."
+        ],
+        tasks: [
+          {
+            type: "assign",
+            title: "Hinweis-Sammler",
+            meta: "M - Indizien zuordnen",
+            prompt: "Ordne die Beobachtungen der passenden Figur oder Spur zu.",
+            options: ["Alina", "Pascal", "Doc/Lotus", "Edgar", "Mr. Archer"],
+            items: [
+              { left: "Daniel erkennt beim Besuch im Schloss, dass hinter der reichen Fassade Probleme liegen.", answer: "Alina" },
+              { left: "Ein Video zeigt mehr über seinen Charakter.", answer: "Pascal" },
+              { left: "Ein Schaden am Auto macht Daniel misstrauisch.", answer: "Doc/Lotus" },
+              { left: "Daniel verschweigt ihm wichtige Informationen.", answer: "Edgar" },
+              { left: "Sein Auto wird für Daniel interessant.", answer: "Mr. Archer" }
+            ]
+          },
+          {
+            type: "cloze",
+            title: "Was verändert sich?",
+            meta: "M - Lücken sichern",
+            prompt: "Ergänze die wichtigsten Begriffe.",
+            parts: ["Daniel sieht ", " nicht mehr nur als Princess Evil. Der ", " bringt Ozzy einen Grabstein. Daniel sammelt Hinweise, weil er den Unfall von ", " verstehen will."],
+            answers: [["Alina"], ["Doc"], ["Pascal", "Pascals"]]
+          },
+          {
+            type: "single",
+            title: "Nicht alles Gold",
+            meta: "M - Aussage erkennen",
+            prompt: "Welche Aussage passt am besten zu Daniels Besuch bei Alina?",
+            image: "../assets/img/Alina_mit_den_zwei_Gesichtern-neu.jpg",
+            options: [
+              "Daniel merkt, dass Alinas reiches Zuhause nicht automatisch bedeutet, dass ihr Leben leicht ist.",
+              "Daniel stellt fest, dass Alina gar keine Probleme hat.",
+              "Daniel bricht den Kontakt zu Alina sofort ab, weil sie arm ist.",
+              "Daniel erfährt, dass Pascal noch lebt und sich versteckt."
+            ],
+            answer: 0
+          },
+          {
+            type: "text",
+            title: "Ein kurzer Zusammenhang",
+            meta: "R - verknüpfen",
+            prompt: "Beschreibe in zwei Sätzen, warum Daniels Verhältnis zu Edgar in dieser Leseetappe schwieriger wird. Nutze die Begriffe Alina und verschweigen.",
+            min: 80,
+            keywords: ["verschweigt", "alina", "edgar", "lügt", "vertrauen"],
+            solution: "Daniel verschweigt Edgar zunehmend Informationen über Alina und den Doc. Dadurch wird das Vertrauen zwischen den Freunden belastet."
+          },
+          {
+            type: "assign",
+            title: "Kapitel 17 bis 27 verbinden",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne die Kapitelspuren der passenden Handlung zu.",
+            options: ["Alinas Fassade", "Pascals Erinnerung", "Doc wirkt auffällig", "Mutter benennt Daniels Muster", "wichtige Park-Information", "Lügen gegenüber Edgar", "Beweisstück", "Archers Auto"],
+            items: [
+              { left: "Gold", answer: "Alinas Fassade" },
+              { left: "Himmel und Hölle", answer: "Pascals Erinnerung" },
+              { left: "Hitze", answer: "Doc wirkt auffällig" },
+              { left: "Rosa Elefanten", answer: "Mutter benennt Daniels Muster" },
+              { left: "Dämonen", answer: "wichtige Park-Information" },
+              { left: "Lügen", answer: "Lügen gegenüber Edgar" },
+              { left: "Beweisstück", answer: "Beweisstück" },
+              { left: "Archers Auto", answer: "Archers Auto" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Alina genauer sehen",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die Daniels veränderten Blick auf Alina zeigen.",
+            options: [
+              "Daniel erkennt, dass Alinas Reichtum nicht automatisch ein leichtes Leben bedeutet.",
+              "Daniel erfahrt durch Alina mehr über Pascal.",
+              "Daniel sieht Alina weiterhin nur als Projekt und erfahrt nichts Neues.",
+              "Daniel bemerkt Gemeinsamkeiten zwischen sich und Alina.",
+              "Daniel beginnt, Edgar alles sofort offen zu erzählen."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "cloze",
+            title: "Spuren ergänzen",
+            meta: "M - Operator: Ergänze",
+            prompt: "Operator: Ergänze die passenden Spuren aus Kapitel 17 bis 27.",
+            parts: ["Bei Alina erkennt Daniel Probleme hinter der reichen ", ". Am ", " des Docs entdeckt er etwas Auffälliges. Gegenüber ", " verschweigt Daniel wichtige Informationen."],
+            answers: [["Fassade"], ["Lotus", "Auto"], ["Edgar"]]
+          },
+          {
+            type: "order",
+            title: "Spurenweg sortieren",
+            meta: "M - Operator: Sortiere",
+            prompt: "Operator: Sortiere Daniels Weg von Alinas Haus bis zum Verdacht gegen Mr. Archer.",
+            items: [
+              { text: "Daniel besucht Alina und sieht ihre Situation anders.", answer: 1 },
+              { text: "Alina zeigt Daniel mehr von Pascal.", answer: 2 },
+              { text: "Daniel nimmt Auffälligkeiten am Doc und am Lotus wahr.", answer: 3 },
+              { text: "Daniel verschweigt Edgar wichtige Dinge.", answer: 4 },
+              { text: "Mr. Archers Auto wird für Daniel als Spur interessant.", answer: 5 }
+            ]
+          },
+          {
+            type: "single",
+            title: "Warum Lügen?",
+            meta: "M - Operator: Wähle aus",
+            prompt: "Operator: Wähle aus, welche Aussage Daniels Lügen gegenüber Edgar am besten beschreibt.",
+            options: [
+              "Daniel verschweigt Dinge, weil er sich Alina annähert und seine Hinweise nicht offen teilt.",
+              "Daniel lügt, weil Edgar nie sein Freund war.",
+              "Daniel lügt nur, weil seine Mutter ihm das befiehlt.",
+              "Daniel lügt, weil Alina und Edgar sich bereits bestens verstehen."
+            ],
+            answer: 0
+          },
+          {
+            type: "assign",
+            title: "Hinweis und Wirkung",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne jedem Hinweis die Wirkung auf Daniel zu.",
+            options: ["Alina wirkt menschlicher", "Doc wird verdächtiger", "Edgar wird ausgeschlossen", "Archer gerät in den Blick", "Pascals Tod wird greifbarer"],
+            items: [
+              { left: "Video von Pascal", answer: "Pascals Tod wird greifbarer" },
+              { left: "Besuch in Alinas Zuhause", answer: "Alina wirkt menschlicher" },
+              { left: "Schaden am Lotus", answer: "Doc wird verdächtiger" },
+              { left: "Verschweigen beim Billard", answer: "Edgar wird ausgeschlossen" },
+              { left: "Archers Auto", answer: "Archer gerät in den Blick" }
+ ]
+          },
+          {
+            type: "text",
+            title: "Alinas Fassade erklären",
+            meta: "R - Operator: Erkläre",
+            prompt: "Operator: Erkläre in zwei Sätzen, warum der Besuch bei Alina Daniels Sicht auf sie verändert.",
+            min: 90,
+            keywords: ["alina", "fassade", "reich", "pascal", "verletzlich", "daniel"],
+            solution: "Daniel sieht, dass Alinas reiches Zuhause nicht bedeutet, dass sie keine Probleme hat. Durch Pascal und Alinas verletzliche Seite wirkt sie für Daniel nicht mehr nur wie Princess Evil."
+          },
+          {
+            type: "text",
+            title: "Verschweigen begründen",
+            meta: "R - Operator: Begründe",
+            prompt: "Operator: Begründe in zwei Sätzen, warum Daniels Verschweigen die Freundschaft zu Edgar belastet.",
+            min: 90,
+            keywords: ["edgar", "verschweigt", "vertrauen", "alina", "freundschaft", "lügen"],
+            solution: "Edgar ist Daniels bester Freund und erwartet Offenheit. Wenn Daniel ihm wichtige Dinge über Alina und die Hinweise verschweigt, wird das Vertrauen in der Freundschaft brüchig."
+          }
+        ]
+      },
+      {
+        id: "etappe4",
+        nav: "Kapitel 28-35",
+        title: "Station 5: Leseetappe 4 - Kapitel 28 bis 35",
+        image: "../assets/img/Achterbahn-neu.jpg",
+        focus: "Daniel muss sein Bild vom Vater, seine Beziehung zu Edgar und Alina sowie den Verdacht gegen den Doc neu ordnen.",
+        goals: [
+          "Ich kann wichtige Konflikte dieser Leseetappe benennen.",
+          "Ich kann Verdachtsmomente und Beziehungsprobleme voneinander unterscheiden."
+        ],
+        tasks: [
+          {
+            type: "assign",
+            title: "Konflikt, Beziehung oder Verdacht?",
+            meta: "M - unterscheiden",
+            prompt: "Ordne die Aussagen der passenden Kategorie zu.",
+            options: ["Vaterbild", "Daniel und Edgar", "Daniel und Alina", "Verdacht gegen den Doc", "Ermittlungen"],
+            items: [
+              { left: "Daniel hört Dinge, die nicht zu seinem idealisierten Bild vom Vater passen.", answer: "Vaterbild" },
+              { left: "Daniel merkt, dass er Edgar durch Geheimnisse und Annäherung an Alina verletzt.", answer: "Daniel und Edgar" },
+              { left: "Daniel sieht Alina nicht mehr nur als Feindin und fühlt sich ihr näher.", answer: "Daniel und Alina" },
+              { left: "Mehrere Beobachtungen am Verhalten und Auto von Thomas König wirken auffällig.", answer: "Verdacht gegen den Doc" },
+              { left: "Polizei und Befragungen sorgen dafür, dass der Unfall nicht nur ein Gerücht bleibt.", answer: "Ermittlungen" }
+ ]
+          },
+          {
+            type: "single",
+            title: "Die Achterbahn",
+            meta: "M - Bild deuten",
+            image: "../assets/img/Achterbahn-neu.jpg",
+            prompt: "Warum passt das Bild einer Achterbahn gut zu Daniels Situation?",
+            options: [
+              "Daniel erlebt starke Wechsel zwischen Wut, Trauer, Hoffnung, Misstrauen, Nähe und Schuldgefühl.",
+              "Daniel arbeitet in dieser Leseetappe auf einem Jahrmarkt.",
+              "Die Handlung spielt in Kapitel 28-35 nur in einem Freizeitpark.",
+              "Daniel interessiert sich für Achterbahnen, deshalb vergisst er alle Konflikte."
+ ],
+            answer: 0
+          },
+          {
+            type: "multiple",
+            title: "Verdachtsampel",
+            meta: "M - Hinweise sammeln",
+            prompt: "Welche Punkte können Daniel misstrauisch gegenüber dem Doc machen?",
+            options: [
+              "Daniel beobachtet einen möglichen Schaden am Lotus.",
+              "Der Doc parkt oder bewegt sich so, dass Daniel genauer hinschaut.",
+              "Der Doc ist freundlich zu Daniels Mutter und deshalb automatisch unschuldig.",
+              "Der Doc wirkt an manchen Stellen ausweichend oder auffällig.",
+              "Daniel hat Angst, dass der Doc seine Mutter wieder verlassen könnte."
+            ],
+            answers: [0, 1, 3, 4]
+ },
+          {
+            type: "cloze",
+            title: "Dreiecksbeziehung sichern",
+            meta: "M - Lücken",
+            prompt: "Ergänze die drei Namen der Dreiecksbeziehung, die Daniels Entscheidungen belastet.",
+            parts: ["Daniel steht zwischen seinem Freund ", " und ", ". Dadurch wird die Freundschaft schwieriger."],
+            answers: [["Edgar"], ["Alina"]]
+          },
+          {
+            type: "assign",
+            title: "Kapitel 28 bis 35 verbinden",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne den Kapitelspuren die passende Entwicklung zu.",
+            options: ["Vaterbild wackelt", "Edgar schreibt kalt", "Daniel fühlt sich als Verräter", "Polizei kommt ins Spiel", "Vaterbild wird gebrochen", "Doc wirkt schief", "Erinnerungsschub", "Fluchtimpuls"],
+            items: [
+              { left: "Achterbahn", answer: "Vaterbild wackelt" },
+              { left: "Kaltblütig", answer: "Edgar schreibt kalt" },
+              { left: "Mieser Verräter", answer: "Daniel fühlt sich als Verräter" },
+              { left: "Very interesting", answer: "Polizei kommt ins Spiel" },
+              { left: "Son of a clown", answer: "Vaterbild wird gebrochen" },
+              { left: "Schiefer Turm", answer: "Doc wirkt schief" },
+              { left: "Gleissend helle Funken", answer: "Erinnerungsschub" },
+              { left: "Bloss weg hier", answer: "Fluchtimpuls" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Vaterbild prüfen",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die zu Daniels Vaterbild in dieser Etappe passen.",
+            options: [
+              "Daniel hält lange an einem idealisierten Bild seines Vaters fest.",
+              "Neue Informationen stören dieses positive Bild.",
+              "Daniel nimmt jede Kritik am Vater sofort gelassen an.",
+              "Das Vaterbild hängt mit Daniels Wut und Verlustgefühlen zusammen.",
+              "Der Vater ist in dieser Etappe vollkommen unwichtig."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "order",
+            title: "Verdacht gegen den Doc sortieren",
+            meta: "M - Operator: Sortiere",
+            prompt: "Operator: Sortiere, wie sich Daniels Verdacht gegen den Doc verstärkt.",
+            items: [
+              { text: "Daniel misstraut dem Doc schon wegen der Mutter.", answer: 1 },
+              { text: "Auffälligkeiten am Lotus machen Daniel aufmerksamer.", answer: 2 },
+              { text: "Weitere Beobachtungen wirken für Daniel nicht zufällig.", answer: 3 },
+              { text: "Daniel verbindet den Doc zunehmend mit dem Unfallverdacht.", answer: 4 },
+              { text: "Daniel fühlt sich innerlich immer stärker unter Druck.", answer: 5 }
+            ]
+          },
+          {
+            type: "single",
+            title: "Kaltblütig verstehen",
+            meta: "M - Operator: Wähle aus",
+            prompt: "Operator: Wähle die passendste Bedeutung von Edgars kühlem Schreiben aus.",
+            options: [
+              "Edgar ist verletzt und zeigt Distanz, weil Daniel ihm nicht mehr offen begegnet.",
+              "Edgar hat Daniel vergessen und erkennt ihn nicht mehr.",
+              "Edgar hat sich heimlich mit dem Doc verbündet.",
+              "Edgar schreibt kalt, weil er das Wetter beschreibt."
+            ],
+            answer: 0
+          },
+          {
+            type: "cloze",
+            title: "Konfliktfeld ergänzen",
+            meta: "M - Operator: Ergänze",
+            prompt: "Operator: Ergänze die Namen und Begriffe des Konfliktfeldes.",
+            parts: ["Daniel fühlt sich zwischen ", " und Alina hin- und hergerissen. Gleichzeitig wackelt sein Bild vom ", ". Der ", " wird für Daniel immer verdächtiger."],
+            answers: [["Edgar"], ["Vater", "seinem Vater"], ["Doc"]]
+          },
+          {
+            type: "assign",
+            title: "Gefühl und Auslöser",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne Daniels Gefühle den passenden Auslösern zu.",
+            options: ["Schuldgefühl", "Misstrauen", "Verunsicherung", "Nähe", "Abwehr"],
+            items: [
+              { left: "Daniel merkt, dass Edgar verletzt ist.", answer: "Schuldgefühl" },
+              { left: "Der Doc und der Lotus wirken auffällig.", answer: "Misstrauen" },
+              { left: "Neue Informationen passen nicht zu Daniels Vaterbild.", answer: "Verunsicherung" },
+              { left: "Daniel versteht Alina besser.", answer: "Nähe" },
+              { left: "Daniel will Geschichten über seinen Vater nicht hören.", answer: "Abwehr" }
+            ]
+          },
+          {
+            type: "text",
+            title: "Vaterbild erklären",
+            meta: "R - Operator: Erkläre",
+            prompt: "Operator: Erkläre in zwei Sätzen, warum neue Informationen über Daniels Vater für Daniel so schwer auszuhalten sind.",
+            min: 90,
+            keywords: ["vater", "bild", "ozzy", "verlust", "ideal", "daniel"],
+            solution: "Daniel hält an einem positiven Bild seines Vaters fest, weil der Vater fehlt und Ozzy mit ihm verbunden ist. Wenn dieses Bild brüchig wird, verliert Daniel eine wichtige innere Sicherheit."
+          },
+          {
+            type: "text",
+            title: "Verdacht beurteilen",
+            meta: "R - Operator: Begründe",
+            prompt: "Operator: Begründe in zwei Sätzen, warum Daniels Verdacht gegen den Doc nicht nur aus Fakten, sondern auch aus Gefühlen entsteht.",
+            min: 90,
+            keywords: ["doc", "verdacht", "mutter", "gefühl", "misstrauen", "lotus"],
+            solution: "Daniel sieht zwar auffällige Hinweise, etwa rund um den Lotus. Gleichzeitig misstraut er dem Doc schon wegen seiner Mutter und seiner Angst, wieder enttäuscht zu werden."
+          }
+        ]
+      },
+      {
+        id: "etappe5",
+        nav: "Kapitel 36-47",
+        title: "Station 6: Leseetappe 5 - Kapitel 36 bis 47",
+        image: "../assets/img/Doc-neu.jpg",
+        focus: "Die Handlung führt zu Entscheidungen, Wiedergutmachung, Edgars Krise, dem Duell mit dem Doc und einem offenen, aber veränderten Ende.",
+        goals: [
+          "Ich kann wichtige Wendepunkte am Ende des Romans wiedergeben.",
+          "Ich kann Daniels Entwicklung in einfachen Sätzen beschreiben."
+        ],
+        tasks: [
+          {
+            type: "order",
+            title: "Wendepunkte am Ende",
+            meta: "M - Reihenfolge",
+            prompt: "Bringe die groben Wendepunkte der letzten Leseetappe in eine passende Reihenfolge.",
+            items: [
+              { text: "Daniel merkt, dass die Wahrheitssuche auch ihn selbst betrifft.", answer: 1 },
+              { text: "Daniel trifft auf Edgar in einer sehr belasteten Situation.", answer: 2 },
+              { text: "Daniel beginnt, angerichtete Schäden zu reparieren oder auszugleichen.", answer: 3 },
+              { text: "Daniel konfrontiert den Doc mit seinen Vorwürfen.", answer: 4 },
+              { text: "Am Ende bleiben Fragen offen, aber Daniel, seine Mutter und Edgar wirken verändert.", answer: 5 }
+ ]
+          },
+          {
+            type: "multiple",
+            title: "Wiedergutmachung",
+            meta: "M - Handlungen erkennen",
+            prompt: "Welche Aussagen zeigen, dass Daniel sich verändert?",
+            options: [
+              "Er denkt darüber nach, welche Schäden er verursacht hat.",
+              "Er versucht, Dinge wieder gutzumachen.",
+              "Er übernimmt mehr Verantwortung für sein Verhalten.",
+              "Er gibt bis zum Schluss ausschliesslich anderen die Schuld.",
+              "Er vermeidet dauerhaft jedes Gespräch mit Edgar."
+            ],
+            answers: [0, 1, 2]
+          },
+          {
+            type: "assign",
+            title: "Reparaturen erkennen",
+            meta: "M - Handlung sichern",
+            prompt: "Ordne die Handlung der passenden Bedeutung zu.",
+            options: ["Wiedergutmachung", "Freundschaft klären", "Verdacht aussprechen", "offene Fragen", "Verantwortung"],
+            items: [
+              { left: "Daniel versucht, angerichtete Schäden nicht einfach stehen zu lassen.", answer: "Wiedergutmachung" },
+              { left: "Daniel muss sich Edgars Verletzung und Traurigkeit stellen.", answer: "Freundschaft klären" },
+              { left: "Daniel geht auf den Doc zu und benennt seine Vorwürfe.", answer: "Verdacht aussprechen" },
+              { left: "Nicht alles ist am Ende vollständig gelöst.", answer: "offene Fragen" },
+              { left: "Daniel erkennt, dass seine eigenen Taten Folgen haben.", answer: "Verantwortung" }
+            ]
+          },
+          {
+            type: "text",
+            title: "Daniels Entwicklung",
+            meta: "R - Zusammenhang",
+            prompt: "Beschreibe in zwei Sätzen, was sich bei Daniel vom Anfang bis zum Ende verändert. Nutze mindestens einen der Begriffe Wut, Verantwortung, Edgar, Alina oder Mutter.",
+            min: 80,
+            keywords: ["wut", "verantwortung", "ozzy", "mutter", "edgar", "alina", "verändert"],
+            solution: "Am Anfang wird Daniel von Trauer, Wut und Misstrauen bestimmt. Am Ende erkennt er eher, dass er Verantwortung übernehmen und Beziehungen reparieren muss."
+          },
+          {
+            type: "assign",
+            title: "Kapitel 36 bis 47 verbinden",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne den Kapitelspuren die passende Schlussentwicklung zu.",
+            options: ["innere Spannung", "Entscheidung", "Zerrissenheit", "Puzzleteile", "Ruckzug", "Edgars Krise", "Wiedergutmachung", "Konfrontation", "Friedensangebot", "offenes Ende"],
+            items: [
+              { left: "Feuer", answer: "innere Spannung" },
+              { left: "Hellwach", answer: "Entscheidung" },
+              { left: "Zwischen zwei Teilen", answer: "Zerrissenheit" },
+              { left: "Puzzle", answer: "Puzzleteile" },
+              { left: "Verschwinden", answer: "Ruckzug" },
+              { left: "Edgars Abgrund", answer: "Edgars Krise" },
+              { left: "Reparaturen", answer: "Wiedergutmachung" },
+              { left: "Duell", answer: "Konfrontation" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Edgars Krise erkennen",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die Edgars Lage am Ende passend beschreiben.",
+            options: [
+              "Edgar ist von Daniels Verhalten verletzt.",
+              "Edgar hat eigene dunkle und belastende Seiten.",
+              "Edgar ist für Daniel nur noch eine unwichtige Nebenfigur.",
+              "Daniel muss sich Edgars Schmerz stellen.",
+              "Edgar hat mit Alina und Daniel gar nichts zu tun."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "cloze",
+            title: "Schlussphase ergänzen",
+            meta: "M - Operator: Ergänze",
+            prompt: "Operator: Ergänze die zentralen Begriffe der Schlussphase.",
+            parts: ["Im Kapitel Reparaturen beginnt Daniel mit ", ". Im Kapitel Duell konfrontiert er den ", ". Am Ende bleiben einige ", " offen."],
+            answers: [["Wiedergutmachung", "Reparaturen"], ["Doc"], ["Fragen"]]
+          },
+          {
+            type: "order",
+            title: "Vom Erkennen zum Handeln",
+            meta: "M - Operator: Sortiere",
+            prompt: "Operator: Sortiere Daniels Weg im letzten Romanteil.",
+            items: [
+              { text: "Daniel fühlt sich zwischen mehreren Wahrheiten und Beziehungen zerrissen.", answer: 1 },
+              { text: "Er erkennt Edgars Krise und seinen eigenen Anteil daran.", answer: 2 },
+              { text: "Er versucht, Schäden zu reparieren.", answer: 3 },
+              { text: "Er spricht den Doc mit seinem Verdacht an.", answer: 4 },
+              { text: "Er geht verändert, aber nicht fertig gelöst aus der Handlung.", answer: 5 }
+ ]
+          },
+          {
+            type: "single",
+            title: "Reparaturen verstehen",
+            meta: "M - Operator: Wähle aus",
+            prompt: "Operator: Wähle die passendste Deutung des Kapiteltitels Reparaturen.",
+            options: [
+              "Es geht nicht nur um Gegenstände, sondern auch darum, angerichtete Schäden und Beziehungen zu reparieren.",
+              "Daniel repariert ausschliesslich ein Auto und alle Konflikte sind danach gelöst.",
+              "Der Titel meint nur, dass der Doc eine Tierarztpraxis renoviert.",
+              "Der Titel hat mit Daniels Entwicklung nichts zu tun."
+            ],
+            answer: 0
+          },
+          {
+            type: "assign",
+            title: "Schlussfiguren zuordnen",
+            meta: "M - Operator: Ordne zu",
+            prompt: "Operator: Ordne den Figuren ihre Rolle im Schlussbogen zu.",
+            options: ["stellt Daniel mit eigener Krise vor Verantwortung", "wird mit Verdacht konfrontiert", "zeigt veränderte Beziehung zu Daniel", "steht für Annäherung und Verlust", "muss Verantwortung übernehmen"],
+            items: [
+              { left: "Edgar", answer: "stellt Daniel mit eigener Krise vor Verantwortung" },
+              { left: "Doc", answer: "wird mit Verdacht konfrontiert" },
+              { left: "Daniels Mutter", answer: "zeigt veränderte Beziehung zu Daniel" },
+              { left: "Alina", answer: "steht für Annäherung und Verlust" },
+              { left: "Daniel", answer: "muss Verantwortung übernehmen" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Offenes Ende prüfen",
+            meta: "M - Operator: Kreuze an",
+            prompt: "Operator: Kreuze alle Aussagen an, die zum Ende des Romans passen.",
+            options: [
+              "Nicht alle Fragen sind vollständig geschlossen.",
+              "Daniel wirkt verändert, weil er Verantwortung eher erkennt.",
+              "Alle Beziehungen sind sofort problemlos und heil.",
+              "Die Mutter-Sohn-Beziehung erscheint in Bewegung.",
+              "Edgar und Daniel bleiben ohne jede Bedeutung füreinander."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "text",
+            title: "Verantwortung erklären",
+            meta: "R - Operator: Erkläre",
+            prompt: "Operator: Erkläre in zwei Sätzen, woran man erkennt, dass Daniel im letzten Romanteil Verantwortung übernimmt.",
+            min: 90,
+            keywords: ["verantwortung", "reparaturen", "edgar", "schaden", "doc", "daniel"],
+            solution: "Daniel schaut nicht mehr nur auf die Schuld anderer, sondern erkennt eigene Schäden und seinen Anteil an Konflikten. Das zeigt sich besonders bei Edgar und bei seinen Versuchen der Wiedergutmachung."
+          }
+        ]
+      },
+      {
+        id: "themen",
+        nav: "Themen im Buch",
+        title: "Station 7: Themen im Buch",
+        image: "../assets/img/Ozzy-neu.jpg",
+        focus: "Die Zusatzmaterialien helfen dir, zentrale Themen des Romans wiederzuerkennen und mit konkreten Romanstellen zu verbinden.",
+        goals: [
+          "Ich kann zentrale Themen passenden Figuren und Situationen zuordnen.",
+          "Ich kann die Hör- und Infomaterialien für einfache Romansicherungen nutzen."
+        ],
+        introHtml: `
+          <p class="small-note">Höre die Audios direkt in den Aufgaben. Prüfe danach, welche Kernaussagen du wiedergeben und mit Krummer Hund verbinden kannst.</p>
+        `,
+        tasks: [
+          {
+            type: "order",
+            title: "Hören: Inhalt des Romans sichern",
+            meta: "M - Operator: Sortiere",
+            audio: {
+              title: "Hörzugang: Inhaltspodcast Krummer Hund",
+              note: "Höre den Überblick und sortiere danach die Handlungsschritte.",
+              src: "../assets/audio/Krummer Hund - Inhaltspodcast.mp3",
+              image: "../assets/img/Polizeiausweis-neu.jpg"
+            },
+            prompt: "Operator: Sortiere die Handlungsschritte so, dass ein grober Inhaltsüberblick entsteht.",
+            items: [
+              { text: "Ozzy stirbt und Daniel gerät aus dem Gleichgewicht.", answer: 1 },
+              { text: "Daniel misstraut dem Doc und sucht nach Hinweisen.", answer: 2 },
+              { text: "Nach der Party und Pascals Unfall entstehen Verdachtsmomente.", answer: 3 },
+              { text: "Daniel erkennt mehr über Alina, Edgar und eigene Fehler.", answer: 4 },
+              { text: "Am Ende versucht Daniel, Verantwortung zu übernehmen.", answer: 5 }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Hören: Hunde und Bindung",
+            meta: "M - Operator: Kreuze an",
+            audio: {
+              title: "Hörzugang: Was Kinder und Jugendliche von Hunden lernen",
+              note: "Höre den Text und kreuze passende Kernaussagen an.",
+              src: "../assets/audio/Was Kinder und Jugendliche von Hunden lernen.mp3",
+              image: "../assets/img/Ozzy-neu.jpg"
+            },
+            prompt: "Operator: Kreuze alle Aussagen an, die zum Hörtext und zu Ozzys Rolle im Roman passen.",
+            options: [
+              "Ein Hund kann für Kinder und Jugendliche Halt und Nähe bedeuten.",
+              "Ein Hund ist für Jugendliche immer nur ein Spielzeug.",
+              "Verantwortung für ein Tier kann den Umgang mit Gefühlen stärken.",
+              "Ozzys Tod trifft Daniel auch deshalb so stark, weil Ozzy mit Erinnerung und Bindung verbunden ist.",
+              "Der Hörtext zeigt, dass Beziehungen zu Tieren für Menschen nie wichtig sind."
+            ],
+            answers: [0, 2, 3]
+          },
+          {
+            type: "assign",
+            title: "Hören: Trauer verstehen",
+            meta: "M - Operator: Ordne zu",
+            audio: {
+              title: "Hörzugang: Trauerverarbeitung in Stufen",
+              note: "Höre den Text und ordne die Aussagen passenden Romanbeispielen zu.",
+              src: "../assets/audio/Trauerverarbeitung_in_Stufen.mp3",
+              image: "../assets/img/Park-neu.jpg"
+            },
+            prompt: "Operator: Ordne jede Höraussage dem passenden Beispiel aus Krummer Hund zu.",
+            options: ["Daniel und Ozzy", "Alina und Pascal", "Ozzys Grab", "Wut und Rückzug", "Zeit und Unterstützung"],
+            items: [
+              { left: "Trauer kann durch den Verlust eines wichtigen Wesens ausgelöst werden.", answer: "Daniel und Ozzy" },
+              { left: "Auch andere Figuren tragen Verlust und Schmerz mit sich.", answer: "Alina und Pascal" },
+              { left: "Rituale können helfen, einen Verlust sichtbar zu machen.", answer: "Ozzys Grab" },
+              { left: "Trauer zeigt sich nicht nur in Weinen, sondern auch in schwierigen Reaktionen.", answer: "Wut und Rückzug" },
+              { left: "Trauer verschwindet nicht sofort und braucht Begleitung.", answer: "Zeit und Unterstützung" }
+            ]
+          },
+          {
+            type: "multiple",
+            title: "Hören: Vertrauen und Misstrauen",
+            meta: "M - Operator: Kreuze an",
+            audio: {
+              title: "Hörzugang: Vertrauen und Misstrauen",
+              note: "Höre den Text und prüfe die Aussagen zum Roman.",
+              src: "../assets/audio/Vertrauen_und_Misstrauen_bei_Kinder_und_Jugendlichen.mp3",
+              image: "../assets/img/Edgar-neu.jpg"
+            },
+            prompt: "Operator: Kreuze alle Aussagen an, die zum Hörtext und zu Daniels Beziehungen passen.",
+            options: [
+              "Vertrauen kann wachsen, wenn Menschen ehrlich miteinander umgehen.",
+              "Misstrauen entsteht manchmal aus schlechten Erfahrungen oder Angst.",
+              "Daniel verschweigt Edgar Dinge und belastet dadurch die Freundschaft.",
+              "Daniel vertraut dem Doc von Anfang an ohne Zweifel.",
+              "Der Roman zeigt, dass Vertrauen und Misstrauen wichtige Themen sind."
+ ],
+            answers: [0, 1, 2, 4]
+ },
+          {
+            type: "multiple",
+            title: "Hören: Alkohol und Blackout",
+            meta: "M - Operator: Wähle aus",
+            audio: {
+              title: "Hörzugang: Alkoholkonsum bei Jugendlichen",
+              note: "Höre den Text und sichere die wichtigsten Aussagen.",
+              src: "../assets/audio/Alkoholkonsum_bei_Jugendlichen_und_seine_Folgen.mp3",
+              image: "../assets/img/Polizeiausweis-neu.jpg"
+            },
+            prompt: "Operator: Kreuze alle Aussagen an, die zum Hörtext und zur Party-Situation im Roman passen.",
+            options: [
+              "Alkohol kann dazu führen, dass Menschen riskanter handeln.",
+              "Ein Blackout bedeutet, dass Erinnerung an eine Situation fehlen kann.",
+              "Alkohol macht jede Situation automatisch sicherer.",
+              "Daniels Erinnerungslücke nach der Party ist für die Handlung wichtig.",
+              "Wenn Erinnerungen fehlen, werden Schuldfragen und Verdacht komplizierter."
+            ],
+            answers: [0, 1, 3, 4]
+          },
+          {
+            type: "multiple",
+            title: "Hören: Selbstvertrauen",
+            meta: "M - Operator: Kreuze an",
+            audio: {
+              title: "Hörzugang: Selbstvertrauen bei Kindern und Jugendlichen",
+              note: "Höre den Text und verbinde ihn mit Daniels Verhalten.",
+              src: "../assets/audio/Selbstvertrauen_bei_Kinder_und_Jugendlichen.mp3",
+              image: "../assets/img/Daniel-neu.jpg"
+            },
+            prompt: "Operator: Kreuze alle Aussagen an, die zum Hörtext und zu Daniel passen.",
+            options: [
+              "Selbstvertrauen kann davon abhängen, wie sicher man sich in Beziehungen fühlt.",
+              "Wer unsicher ist, reagiert manchmal hart oder verletzend.",
+              "Daniel wirkt immer ruhig, sicher und ausgeglichen.",
+              "Daniels Wut kann auch mit Verletzung und Unsicherheit zusammenhängen.",
+              "Selbstvertrauen hat mit dem Verhalten anderer Menschen nie etwas zu tun."
+            ],
+            answers: [0, 1, 3]
+          },
+          {
+            type: "assign",
+            title: "Thema und Romansituation",
+            meta: "M - Themen zuordnen",
+            prompt: "Ordne jedes Thema einer passenden Romansituation zu.",
+            options: ["Ozzy und Hunde", "Trauer", "Vertrauen", "Selbstvertrauen", "Alkohol und Blackout"],
+            items: [
+              { left: "Daniel verliert mit Ozzy eine wichtige Bindung und Erinnerung an den Vater.", answer: "Ozzy und Hunde" },
+              { left: "Daniel trauert um Ozzy, Alina um Pascal.", answer: "Trauer" },
+              { left: "Daniel verschweigt Edgar Dinge und prüft, wem er glauben kann.", answer: "Vertrauen" },
+              { left: "Daniel wirkt oft verletzt, reagiert hart und muss lernen, sich selbst anders zu sehen.", answer: "Selbstvertrauen" },
+              { left: "Nach der Party fehlen Daniel Erinnerungen.", answer: "Alkohol und Blackout" }
+ ]
+          },
+          {
+            type: "multiple",
+            title: "Kernaussagen",
+            meta: "M - Infotext sichern",
+            prompt: "Welche Aussagen passen zu den Themenmaterialien und zum Roman?",
+            options: [
+              "Hunde können für Kinder und Jugendliche emotionale Sicherheit bedeuten.",
+              "Trauer verläuft bei allen Menschen genau gleich.",
+              "Vertrauen kann durch Enttäuschungen belastet werden.",
+              "Alkohol kann zu Erinnerungslücken führen.",
+              "Selbstvertrauen kann davon beeinflusst werden, wie andere mit einem umgehen.",
+              "Daniel und Alina zeigen beide, dass Trauer unterschiedlich aussehen kann."
+            ],
+            answers: [0, 2, 3, 4, 5]
+          },
+          {
+            type: "text",
+            title: "Thema kurz verbinden",
+            meta: "R - Bezug herstellen",
+            prompt: "Wähle ein Thema aus der Station und verbinde es in zwei Sätzen mit Daniel oder Alina.",
+            min: 80,
+            keywords: ["daniel", "alina", "ozzy", "trauer", "vertrauen", "selbstvertrauen", "alkohol"],
+            solution: "Zum Beispiel: Das Thema Trauer passt zu Daniel, weil er Ozzy verliert und dadurch stark aus dem Gleichgewicht gerät. Auch Alina erlebt Trauer, weil ihr Bruder Pascal stirbt."
+          }
+        ]
+      },
+      {
+        id: "test",
+        nav: "Teste dein Wissen",
+        title: "Station 8: Teste dein Wissen",
+        image: "../assets/img/Edgars_Skizzenbuch-neu.jpg",
+        focus: "20 abwechslungsreiche Aufgaben: 15 Aufgaben sichern den Mindeststandard, 5 Aufgaben prüfen den Regelstandard.",
+        goals: [
+          "Ich kann Buchinhalt, Figuren und Ereignisse selbstständig wiederholen.",
+          "Ich kann bei einigen Aufgaben einfache Zusammenhänge herstellen."
+        ],
+        isQuiz: true
+      }
+    ];
+
+    const quizQuestions = [
+      { level: "M", type: "single", question: "Welche Aussage beschreibt Ozzys Bedeutung für Daniel am genauesten?", options: ["Ozzy ist für Daniel Hund, Halt und Verbindung zum Vater zugleich.", "Ozzy ist nur wichtig, weil der Doc Tierarzt ist.", "Ozzy ist vor allem Alinas Hund.", "Ozzy löst den Unfall um Pascal direkt aus."], answer: 0 },
+      { level: "M", type: "assign", question: "Ordne Figur und Funktion im Roman zu.", options: ["Ich-Erzähler", "bester Freund", "neuer Partner der Mutter", "zunächst Feindbild", "abwesender Vater"], items: [{ left: "Daniel", answer: "Ich-Erzähler" }, { left: "Edgar", answer: "bester Freund" }, { left: "Doc", answer: "neuer Partner der Mutter" }, { left: "Alina", answer: "zunächst Feindbild" }, { left: "Daniels Vater", answer: "abwesender Vater" }] },
+      { level: "M", type: "multiple", question: "Welche Aussagen sichern Daniels Ausgangslage zu Beginn?", options: ["Ozzys Tod trifft Daniel unerwartet hart.", "Daniels Mutter wendet sich in der Tierarztpraxis auch dem Doc zu.", "Daniel vertraut dem Doc sofort uneingeschränkt.", "Daniel verbindet Ozzy mit seinem Vater.", "Daniel und Edgar kennen Alina bereits aus der Schule."], answers: [0, 1, 3, 4] },
+      { level: "M", type: "order", question: "Sortiere die Ereignisse aus der ersten Leseetappe.", items: [{ text: "Ozzy stirbt in der Tierarztpraxis.", answer: 1 }, { text: "Daniel begräbt Ozzy.", answer: 2 }, { text: "Der Doc taucht als neuer Mann der Mutter auf.", answer: 3 }, { text: "Daniel und Edgar nennen Alina Princess Evil und beobachten sie.", answer: 4 }, { text: "Daniel reagiert im Park mit Wut auf Mann und Hund.", answer: 5 }] },
+      { level: "M", type: "assign", question: "Ordne Kapitelspur und Bedeutung zu.", options: ["Trauer", "Misstrauen", "Freundschaft", "Feindbild Alina", "Wutausbruch"], items: [{ left: "Ozzys Grab", answer: "Trauer" }, { left: "Doc an der Seite der Mutter", answer: "Misstrauen" }, { left: "Edgars Ozzy-Zeichnung", answer: "Freundschaft" }, { left: "Princess Evil", answer: "Feindbild Alina" }, { left: "Park-Szene mit dem Hund", answer: "Wutausbruch" }] },
+      { level: "M", type: "multiple", question: "Was gehört zur zweiten Leseetappe mit Party, Blackout und Unfall?", options: ["Daniel und Edgar gehen zur Party.", "Pascal wird nach der Party angefahren.", "Daniel kann sich an Teile des Abends nicht erinnern.", "Der Täter ist sofort sicher bewiesen.", "Mr. Archer gerät in den Blick."], answers: [0, 1, 2, 4] },
+      { level: "M", type: "fill", question: "Nenne den Vornamen von Alinas Bruder.", answers: ["Pascal"] },
+      { level: "M", type: "single", question: "Was bedeutet Blackout im Zusammenhang der Party?", options: ["Daniel fehlen Erinnerungen an einen Teil des Abends.", "Alina schaltet bei der Party das Licht aus.", "Edgar verliert sein Skizzenbuch.", "Der Doc bricht den Kontakt zur Mutter ab."], answer: 0 },
+      { level: "M", type: "assign", question: "Ordne Hinweise aus Kapitel 17-27 zu.", options: ["Alina", "Pascal", "Doc/Lotus", "Edgar", "Mr. Archer"], items: [{ left: "Besuch im Schloss zeigt Probleme hinter der Fassade.", answer: "Alina" }, { left: "Video macht ihn als Person sichtbarer.", answer: "Pascal" }, { left: "Autoschaden macht Daniel misstrauisch.", answer: "Doc/Lotus" }, { left: "Daniel verschweigt ihm wichtige Informationen.", answer: "Edgar" }, { left: "Sein Auto wird als Spur interessant.", answer: "Mr. Archer" }] },
+      { level: "M", type: "multiple", question: "Welche Aussagen zu Alina passen zum Verlauf?", options: ["Sie wird zuerst als Princess Evil gesehen.", "Daniel erkennt später eine verletzlichere Seite an ihr.", "Pascals Tod spielt für Alinas Darstellung keine Rolle.", "Daniel und Alina haben beide mit Verlust zu tun.", "Alina ersetzt Ozzy als Daniels Haustier."], answers: [0, 1, 3] },
+      { level: "M", type: "assign", question: "Ordne Thema und Romanbeispiel zu.", options: ["Hund und Bindung", "Trauer", "Vertrauen", "Alkohol/Blackout", "Selbstvertrauen"], items: [{ left: "Ozzy gibt Daniel Halt.", answer: "Hund und Bindung" }, { left: "Daniel und Alina müssen mit Verlust umgehen.", answer: "Trauer" }, { left: "Daniel verschweigt Edgar Dinge.", answer: "Vertrauen" }, { left: "Nach der Party fehlen Erinnerungen.", answer: "Alkohol/Blackout" }, { left: "Daniel ist verletzlich und reagiert oft hart.", answer: "Selbstvertrauen" }] },
+      { level: "M", type: "order", question: "Sortiere Daniels Entwicklung grob.", items: [{ text: "Ozzy stirbt und Daniel gerät aus dem Gleichgewicht.", answer: 1 }, { text: "Daniel misstraut dem Doc und sammelt Hinweise.", answer: 2 }, { text: "Daniel entfernt sich durch Geheimnisse von Edgar.", answer: 3 }, { text: "Daniel erkennt eigene Fehler und angerichtete Schäden.", answer: 4 }, { text: "Daniel beginnt, Verantwortung zu übernehmen.", answer: 5 }] },
+      { level: "M", type: "multiple", question: "Welche Aussagen zu Edgar passen?", options: ["Er ist Daniels bester Freund.", "Er zeichnet und beobachtet genau.", "Er wird von Daniels Verhalten verletzt.", "Er ist Pascals Vater.", "Er ersetzt den Doc als Tierarzt."], answers: [0, 1, 2] },
+      { level: "M", type: "assign", question: "Ordne Bildmotiv und Handlungsspur zu.", options: ["Ozzy/Verlust", "Alina/Fassade", "Edgar/Kunst", "Doc/Verdacht", "Ermittlung"], items: [{ left: "Grabstein", answer: "Ozzy/Verlust" }, { left: "zwei Gesichter", answer: "Alina/Fassade" }, { left: "Skizzenbuch", answer: "Edgar/Kunst" }, { left: "Lotus", answer: "Doc/Verdacht" }, { left: "Polizeiausweis", answer: "Ermittlung" }] },
+      { level: "M", type: "single", question: "Welche Aussage beschreibt das Ende am passendsten?", options: ["Nicht alle Fragen sind einfach erledigt, aber Daniel beginnt, anders mit sich und anderen umzugehen.", "Alle Konflikte verschwinden sofort und niemand ist mehr verletzt.", "Daniel bricht mit allen Figuren und bleibt allein.", "Der Roman endet, bevor Daniel etwas über sich selbst erkennt."], answer: 0 },
+      { level: "R", type: "text", question: "Erkläre, warum Daniel dem Doc am Anfang misstraut.", min: 90, keywords: ["mutter", "männer", "ozzy", "verlust", "vater", "doc"], solution: "Daniel kennt die früheren Beziehungen seiner Mutter und erwartet, dass auch der Doc wieder verschwindet oder sie verletzt. Zugleich begegnet er dem Doc in der Situation von Ozzys Tod, also mitten in Daniels Verlust." },
+      { level: "R", type: "text", question: "Beschreibe, wie sich Daniels Sicht auf Alina verändert.", min: 90, keywords: ["princess", "evil", "fassade", "pascal", "trauer", "alina"], solution: "Zuerst sieht Daniel Alina als Princess Evil und damit als Gegnerin. Später erkennt er ihre Verletzlichkeit, ihre Trauer um Pascal und Gemeinsamkeiten mit ihr." },
+      { level: "R", type: "text", question: "Erkläre den Konflikt zwischen Daniel und Edgar.", min: 90, keywords: ["verschweigt", "vertrauen", "alina", "edgar", "freundschaft", "verletzt"], solution: "Daniel verschweigt Edgar wichtige Dinge, besonders in Bezug auf Alina und seine Verdachtsmomente. Dadurch verliert Edgar Sicherheit in der Freundschaft und fühlt sich verletzt." },
+      { level: "R", type: "text", question: "Begründe, warum Ozzy mehr als nur ein Hund für Daniel ist.", min: 90, keywords: ["vater", "verlust", "sicherheit", "bindung", "trauer", "ozzy"], solution: "Ozzy ist für Daniel eine Verbindung zu seinem Vater und gibt ihm Halt. Als Ozzy stirbt, verliert Daniel deshalb nicht nur ein Tier, sondern auch Sicherheit und ein Stück Erinnerung." },
+      { level: "R", type: "text", question: "Erkläre eine mögliche Bedeutung des Titels Krummer Hund.", min: 90, keywords: ["verdacht", "schuld", "daniel", "doc", "verhalten", "vertrauen", "schief"], solution: "Der Titel kann auf Figuren und Situationen verweisen, die nicht eindeutig gerade oder eindeutig gut wirken. Er passt zu Misstrauen, Schuldfragen, Daniels Verhalten und den krummen Wegen zur Wahrheit." }
+    ];
+
+    let completed = new Set(getStorage("krummerHundM8Done", []));
+    let activeId = "overview";
+
+    const stationNav = document.querySelector("#stationNav");
+    const stampGrid = document.querySelector("#stampGrid");
+    const stationArea = document.querySelector("#stationArea");
+    const quizArea = document.querySelector("#quizArea");
+    const overview = document.querySelector("#overview");
+    const stampOverview = document.querySelector("#stampOverview");
+    const targetOverview = document.querySelector("#targetOverview");
+    const currentPath = document.querySelector("#currentPath");
+    const progressText = document.querySelector("#progressText");
+    const progressBar = document.querySelector("#progressBar");
+    const stationDoneBtn = document.querySelector("#stationDoneBtn");
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function normalize(value) {
+      return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replaceAll("\u00e4", "ae")
+        .replaceAll("\u00f6", "oe")
+        .replaceAll("\u00fc", "ue")
+        .replaceAll("\u00df", "ss")
+        .replace(/[.,;:!?()"']/g, "")
+ .replace(/\s+/g, " ");
+    }
+
+    function countSentences(value) {
+      return String(value || "")
+        .split(/[.!?\n]+/)
+        .map(part => normalize(part))
+        .filter(part => part.length > 10).length;
+    }
+
+    function renderNavigation() {
+      stationNav.innerHTML = "";
+      stations.forEach((station, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "nav-button" + (activeId === station.id ? " active" : "") + (completed.has(station.id) ? " done" : "");
+        button.innerHTML = `<span class="nav-number">${index}</span><span>${escapeHtml(station.nav)}</span><span class="done-mark">OK</span>`;
+        button.addEventListener("click", () => showStation(station.id));
+        stationNav.appendChild(button);
+      });
+    }
+
+    function renderStampGrid() {
+      stampGrid.innerHTML = stations.map((station, index) => `
+        <button class="stamp-card" type="button" data-station="${escapeHtml(station.id)}">
+          <img src="${escapeHtml(station.image || "../assets/img/Daniel-neu.jpg")}" alt="">
+          <span class="stamp-body">
+            <strong>${index}. ${escapeHtml(station.nav)}</strong>
+            <span>${escapeHtml(station.focus)}</span>
+          </span>
+        </button>
+      `).join("");
+      stampGrid.querySelectorAll("[data-station]").forEach(button => {
+        button.addEventListener("click", () => showStation(button.dataset.station));
+      });
+    }
+
+    function updateProgress() {
+      progressText.textContent = `${completed.size} von ${stations.length}`;
+      progressBar.style.width = `${Math.round(completed.size / stations.length * 100)}%`;
+      stationDoneBtn.textContent = completed.has(activeId) ? "Station geschafft" : "Station abhaken";
+    }
+
+    function renderStationHeader(station) {
+      return `
+        <section class="section station-header">
+          <div class="station-info">
+            <span class="eyebrow" style="background:var(--accent-soft); color:var(--accent-dark);">Deutsch M8</span>
+            <h2>${escapeHtml(station.title)}</h2>
+            <p>${escapeHtml(station.focus)}</p>
+            <ul class="goal-list">
+              ${station.goals.map(goal => `<li>${escapeHtml(goal)}</li>`).join("")}
+            </ul>
+            <div class="pill-row">
+              <span class="pill m">Mindeststandard</span>
+              ${station.id === "test" ? '<span class="pill r">mit5 Regelstandard-Aufgaben</span>' : '<span class="pill">selbst prüfen</span>'}
+            </div>
+          </div>
+          <img class="station-image" src="${escapeHtml(station.image)}" alt="">
+        </section>
+      `;
+    }
+
+    function renderTask(task, index) {
+      const full = task.type === "order" || task.type === "text" || task.introFull ? " full" : "";
+      let body = "";
+      if (task.image) {
+        body += `<img class="inline-img" src="${escapeHtml(task.image)}" alt="">`;
+      }
+      if (task.audio) {
+        body += `
+          <div class="task-audio-panel">
+            <img src="${escapeHtml(task.audio.image || task.image || "../assets/img/Ozzy-neu.jpg")}" alt="">
+            <div>
+              <strong>${escapeHtml(task.audio.title)}</strong>
+              <span>${escapeHtml(task.audio.note || "Höre genau zu und löse danach die Aufgabe.")}</span>
+              <audio controls src="${escapeHtml(task.audio.src)}"></audio>
+            </div>
+          </div>
+        `;
+      }
+      if (task.operatorHelp) {
+        body += `<div class="operator-help"><strong>Antwortform:</strong> ${escapeHtml(task.operatorHelp)}</div>`;
+      }
+      body += `<p>${escapeHtml(task.prompt)}</p>`;
+      if (task.type === "single" || task.type === "multiple") {
+        body += `<div class="choice-list">`;
+        task.options.forEach((option, optionIndex) => {
+          const inputType = task.type === "single" ? "radio" : "checkbox";
+          body += `<label class="option"><input type="${inputType}" name="task_${index}" value="${optionIndex}"><span>${escapeHtml(option)}</span></label>`;
+        });
+        body += `</div>`;
+      }
+      if (task.type === "assign") {
+        body += task.items.map((item, itemIndex) => `
+          <div class="assign-row">
+            <strong>${escapeHtml(item.left)}</strong>
+            <select aria-label="${escapeHtml(item.left)}" data-answer="${escapeHtml(item.answer)}">
+              <option value="">Bitte auswählen</option>
+              ${task.options.map(option => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
+      }
+      if (task.type === "order") {
+        body += task.items.map((item, itemIndex) => `
+          <div class="order-row">
+            <span>${escapeHtml(item.text)}</span>
+            <select aria-label="Reihenfolge" data-answer="${item.answer}">
+              <option value="">Position</option>
+              ${task.items.map((_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
+      }
+      if (task.type === "cloze") {
+        body += `<div class="cloze-line">`;
+        task.parts.forEach((part, partIndex) => {
+          body += `<span>${escapeHtml(part)}</span>`;
+          if (partIndex < task.answers.length) {
+            body += `<input type="text" data-answer="${encodeURIComponent(JSON.stringify(task.answers[partIndex]))}" aria-label="Lücke ${partIndex + 1}">`;
+          }
+        });
+        body += `</div>`;
+      }
+      if (task.type === "text") {
+        const keywordMin = task.keywordMin ?? ((task.keywords || []).length ? 1 : 0);
+        const sentenceMin = task.sentenceMin || 0;
+        body += `<textarea data-min="${task.min || 40}" data-keywords="${escapeHtml((task.keywords || []).join("|"))}" data-keyword-min="${keywordMin}" data-sentence-min="${sentenceMin}" placeholder="Schreibe hier deine Antwort."></textarea>`;
+      }
+      return `
+        <article class="task-card${full}" data-type="${escapeHtml(task.type)}" data-task-index="${index}" data-solved="false">
+          <div class="task-head">
+            <h3 class="task-title">${escapeHtml(task.title)}</h3>
+            <span class="task-meta">${escapeHtml(task.meta || "Aufgabe")}</span>
+          </div>
+          ${body}
+          <div class="check-row">
+            <button class="check-btn" type="button">Prüfen</button>
+            <span class="feedback"></span>
+          </div>
+        </article>
+      `;
+    }
+
+    function checkTask(card, task) {
+      let ok = false;
+      let solution = "";
+      if (task.type === "single") {
+        const selected = card.querySelector(`input[name="task_${card.dataset.taskIndex}"]:checked`);
+        ok = !!selected && Number(selected.value) === task.answer;
+        solution = task.options[task.answer];
+        card.querySelectorAll("label.option").forEach((label, index) => {
+          label.classList.toggle("correct", index === task.answer);
+          label.classList.toggle("wrong", selected && Number(selected.value) === index && index !== task.answer);
+        });
+      }
+      if (task.type === "multiple") {
+        const selected = [...card.querySelectorAll(`input[name="task_${card.dataset.taskIndex}"]:checked`)].map(input => Number(input.value)).sort((a,b) => a-b);
+        const answers = [...task.answers].sort((a,b) => a-b);
+        ok = selected.length === answers.length && selected.every((value, i) => value === answers[i]);
+        solution = answers.map(i => task.options[i]).join("; ");
+        card.querySelectorAll("label.option").forEach((label, index) => {
+          const isSelected = selected.includes(index);
+          const should = answers.includes(index);
+          label.classList.toggle("correct", should);
+          label.classList.toggle("wrong", isSelected && !should);
+        });
+      }
+      if (task.type === "assign" || task.type === "order") {
+        const selects = [...card.querySelectorAll("select")];
+        ok = selects.every(select => select.value === select.dataset.answer);
+        solution = selects.map(select => select.dataset.answer).join("; ");
+      }
+      if (task.type === "cloze") {
+        const inputs = [...card.querySelectorAll("input[type='text']")];
+        ok = inputs.every(input => {
+          const accepted = JSON.parse(decodeURIComponent(input.dataset.answer));
+          return accepted.some(answer => normalize(answer) === normalize(input.value));
+        });
+        solution = inputs.map((input, index) => {
+          const accepted = JSON.parse(decodeURIComponent(input.dataset.answer));
+          return `Lücke ${index + 1}: ${accepted[0]}`;
+        }).join("; ");
+      }
+      if (task.type === "text") {
+        const textarea = card.querySelector("textarea");
+        const value = normalize(textarea.value);
+        const keywords = (textarea.dataset.keywords || "").split("|").filter(Boolean).map(normalize);
+        const keywordMin = Number(textarea.dataset.keywordMin || 0);
+        const sentenceMin = Number(textarea.dataset.sentenceMin || 0);
+        const hits = keywords.filter(keyword => value.includes(keyword)).length;
+        const keywordHit = keywords.length === 0 || hits >= keywordMin;
+        const sentenceHit = sentenceMin === 0 || countSentences(textarea.value) >= sentenceMin;
+        ok = textarea.value.trim().length >= Number(textarea.dataset.min) && keywordHit && sentenceHit;
+        solution = task.solution || "Achte darauf, einen vollständigen Satz mit Textbezug zu formulieren.";
+      }
+      const feedback = card.querySelector(".feedback");
+      card.dataset.solved = ok ? "true" : "false";
+      feedback.className = "feedback " + (ok ? "good" : "bad");
+      feedback.textContent = ok ? "Richtig oder gut nachvollziehbar." : "Noch nicht ganz. Hilfe: " + solution;
+      updateStationAutoDone();
+    }
+
+    function renderStation(station) {
+      quizArea.classList.add("hidden");
+      overview.classList.add("hidden");
+      stampOverview.classList.add("hidden");
+      targetOverview.classList.add("hidden");
+      stationDoneBtn.classList.remove("hidden");
+      activeId = station.id;
+      currentPath.textContent = station.title;
+
+      if (station.isQuiz) {
+        stationArea.innerHTML = renderStationHeader(station);
+        renderQuiz();
+      } else {
+        stationArea.innerHTML = renderStationHeader(station) + `
+          ${station.introHtml ? `<section class="section">${station.introHtml}</section>` : ""}
+          <div class="task-grid">
+            ${station.tasks.map(renderTask).join("")}
+          </div>
+        `;
+        stationArea.querySelectorAll(".task-card").forEach(card => {
+          const task = station.tasks[Number(card.dataset.taskIndex)];
+          card.querySelector(".check-btn").addEventListener("click", () => checkTask(card, task));
+        });
+      }
+      renderNavigation();
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateStationAutoDone() {
+      const station = stations.find(item => item.id === activeId);
+      if (!station || station.isQuiz) return;
+      const cards = [...stationArea.querySelectorAll(".task-card")];
+      if (cards.length && cards.every(card => card.dataset.solved === "true")) {
+        completed.add(activeId);
+        setStorage("krummerHundM8Done", [...completed]);
+        renderNavigation();
+        updateProgress();
+      }
+    }
+
+    function showStation(id) {
+      const station = stations.find(item => item.id === id);
+      if (station) renderStation(station);
+    }
+
+    function showOverview() {
+      activeId = "overview";
+      overview.classList.remove("hidden");
+      stampOverview.classList.remove("hidden");
+      targetOverview.classList.remove("hidden");
+      stationArea.innerHTML = "";
+      quizArea.classList.add("hidden");
+      stationDoneBtn.classList.add("hidden");
+      currentPath.textContent = "Überblick";
+      renderNavigation();
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderQuizInput(q, index) {
+      if (q.type === "single" || q.type === "multiple") {
+        const type = q.type === "single" ? "radio" : "checkbox";
+        return `<div class="quiz-options">${q.options.map((option, optionIndex) => `
+          <label class="option"><input type="${type}" name="quiz_${index}" value="${optionIndex}"><span>${escapeHtml(option)}</span></label>
+        `).join("")}</div>`;
+      }
+      if (q.type === "fill") {
+        return `<input type="text" aria-label="Antwort zu Aufgabe ${index + 1}" placeholder="Antwort eingeben">`;
+      }
+      if (q.type === "assign") {
+        return q.items.map(item => `
+          <div class="assign-row">
+            <strong>${escapeHtml(item.left)}</strong>
+            <select data-answer="${escapeHtml(item.answer)}">
+              <option value="">Bitte auswählen</option>
+              ${q.options.map(option => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
+      }
+      if (q.type === "order") {
+        return q.items.map(item => `
+          <div class="order-row">
+            <span>${escapeHtml(item.text)}</span>
+            <select data-answer="${item.answer}">
+              <option value="">Position</option>
+              ${q.items.map((_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("")}
+            </select>
+          </div>
+        `).join("");
+      }
+      if (q.type === "text") {
+        return `<textarea data-min="${q.min}" data-keywords="${escapeHtml(q.keywords.join("|"))}" placeholder="Antwort in ganzen Sätzen."></textarea>`;
+      }
+      return "";
+    }
+
+    function renderQuiz() {
+      quizArea.classList.remove("hidden");
+      quizArea.innerHTML = `
+        <div class="quiz-top">
+          <div>
+            <span class="eyebrow" style="background:var(--accent-soft); color:var(--accent-dark);">15 x M + 5 x R</span>
+            <h2>Teste dein Wissen</h2>
+            <p class="small-note">Die Aufgaben sind gemischt. M-Aufgaben sichern Inhalt, Figuren und Reihenfolge. R-Aufgaben verlangen einfache Begründungen und Zusammenhänge.</p>
+          </div>
+          <div class="quiz-score" id="quizScore">Noch nicht ausgewertet</div>
+        </div>
+        <div class="quiz-grid">
+          ${quizQuestions.map((q, index) => `
+            <article class="quiz-card" data-index="${index}" data-type="${escapeHtml(q.type)}">
+              <p class="quiz-question-title"><span class="level ${q.level.toLowerCase()}">${q.level}</span><span>${index + 1}. ${escapeHtml(q.question)}</span></p>
+              ${renderQuizInput(q, index)}
+              <div class="feedback"></div>
+ </article>
+          `).join("")}
+        </div>
+        <div class="check-row" style="margin-top:16px">
+          <button class="quiz-btn" id="quizCheckBtn" type="button">Test auswerten</button>
+          <button class="quiz-btn secondary-btn" id="quizResetBtn" type="button">Antworten löschen</button>
+        </div>
+      `;
+      document.querySelector("#quizCheckBtn").addEventListener("click", checkQuiz);
+      document.querySelector("#quizResetBtn").addEventListener("click", resetQuiz);
+    }
+
+    function scoreQuizCard(card) {
+      const index = Number(card.dataset.index);
+      const q = quizQuestions[index];
+      let ok = false;
+      let solution = "";
+      if (q.type === "single") {
+        const checked = card.querySelector(`input[name="quiz_${index}"]:checked`);
+        ok = !!checked && Number(checked.value) === q.answer;
+        solution = q.options[q.answer];
+      }
+      if (q.type === "multiple") {
+        const selected = [...card.querySelectorAll(`input[name="quiz_${index}"]:checked`)].map(input => Number(input.value)).sort((a,b) => a-b);
+        const answers = [...q.answers].sort((a,b) => a-b);
+        ok = selected.length === answers.length && selected.every((value, i) => value === answers[i]);
+        solution = answers.map(i => q.options[i]).join("; ");
+      }
+      if (q.type === "fill") {
+        const input = card.querySelector("input[type='text']");
+        ok = q.answers.some(answer => normalize(answer) === normalize(input.value));
+        solution = q.answers[0];
+      }
+      if (q.type === "assign" || q.type === "order") {
+        const selects = [...card.querySelectorAll("select")];
+        ok = selects.every(select => select.value === select.dataset.answer);
+        solution = selects.map(select => select.dataset.answer).join("; ");
+      }
+      if (q.type === "text") {
+        const textarea = card.querySelector("textarea");
+        const value = normalize(textarea.value);
+        const keywords = q.keywords.map(normalize);
+        const hits = keywords.filter(keyword => value.includes(keyword)).length;
+        ok = textarea.value.trim().length >= q.min && hits >= 1;
+        solution = q.solution;
+      }
+      return { ok, solution };
+    }
+
+    const quizFeedbackMessages = {
+      0: "Du hast angefangen und siehst jetzt, welche Inhalte noch unsicher sind. Gehe in Ruhe zu den passenden Stationen zurück.",
+      10: "Ein erster Anfang ist gemacht. Suche dir zwei Figuren und eine Leseetappe aus, die du noch einmal wiederholst.",
+      20: "Du erkennst schon einzelne Spuren. Arbeite besonders mit den Zuordnungs- und Reihenfolgeaufgaben weiter.",
+      30: "Du hast schon einige Inhalte gefunden. Wiederhole nun gezielt Figuren, Ozzy und die erste Leseetappe.",
+      40: "Du kommst ins Material hinein. Konzentriere dich als Nächstes auf die Ereignisfolge und die wichtigsten Konflikte.",
+      50: "Die Hälfte sitzt schon. Mit etwas Wiederholung kannst du deutlich sicherer werden.",
+      60: "Du bist auf einem guten Weg. Wiederhole noch die Kapitel, bei denen du viele Lösungshinweise gebraucht hast.",
+      70: "Das ist schon solide. Schaue dir noch die offenen Fehler an und prüfe besonders die Zusammenhänge.",
+      80: "Sehr gut: Du hast den Mindeststandard weitgehend sicher erreicht.",
+      90: "Stark: Du bist sehr sicher im Inhalt und kannst schon viele Zusammenhänge herstellen.",
+      100: "Ausgezeichnet: Du hast alle Aufgaben sicher gelöst und bist sehr gut vorbereitet."
+    };
+
+    function getQuizFeedback(correct, total) {
+      const percent = total ? Math.round((correct / total) * 100) : 0;
+      const step = Math.min(100, Math.floor(percent / 10) * 10);
+      const message = quizFeedbackMessages[step] || quizFeedbackMessages[0];
+      const recommendation = percent >= 80
+        ? "Empfehlung: Dein Lernpartner ist bereit für den Gelingensnachweis im Mindeststandard."
+        : "Nächster Schritt: Bearbeite die passenden Stationen noch einmal und werte den Test danach erneut aus.";
+      return { percent, step, message, recommendation };
+    }
+
+    function checkQuiz() {
+      let correct = 0;
+      quizArea.querySelectorAll(".quiz-card").forEach(card => {
+        const result = scoreQuizCard(card);
+        card.classList.toggle("correct", result.ok);
+        card.classList.toggle("wrong", !result.ok);
+        const feedback = card.querySelector(".feedback");
+        feedback.className = "feedback " + (result.ok ? "good" : "bad");
+        feedback.textContent = result.ok ? "Richtig oder ausreichend begründet." : "Noch nicht. Lösung/Hilfe: " + result.solution;
+        if (result.ok) correct++;
+      });
+      const mCards = [...quizArea.querySelectorAll(".quiz-card")].filter(card => quizQuestions[Number(card.dataset.index)].level === "M");
+      const rCards = [...quizArea.querySelectorAll(".quiz-card")].filter(card => quizQuestions[Number(card.dataset.index)].level === "R");
+      const mCorrect = mCards.filter(card => card.classList.contains("correct")).length;
+      const rCorrect = rCards.filter(card => card.classList.contains("correct")).length;
+      const feedbackInfo = getQuizFeedback(correct, quizQuestions.length);
+      const passed = feedbackInfo.percent >= 80;
+      document.querySelector("#quizScore").innerHTML =
+        `<span class="quiz-score-main">${correct} von ${quizQuestions.length} richtig (${feedbackInfo.percent}%)</span>` +
+        `<span class="quiz-score-detail">M: ${mCorrect}/15 - R: ${rCorrect}/5</span>` +
+        `<div class="quiz-feedback-message"><span class="quiz-feedback-title">Rückmeldung ${feedbackInfo.step}%</span>${escapeHtml(feedbackInfo.message)}</div>` +
+        `<div class="${passed ? "quiz-recommendation" : "quiz-next-step"}">${escapeHtml(feedbackInfo.recommendation)}</div>`;
+      if (passed) {
+        completed.add("test");
+      } else {
+        completed.delete("test");
+      }
+      setStorage("krummerHundM8Done", [...completed]);
+      renderNavigation();
+      updateProgress();
+    }
+
+    function resetQuiz() {
+      quizArea.querySelectorAll("input").forEach(input => {
+        if (input.type === "radio" || input.type === "checkbox") input.checked = false;
+        if (input.type === "text") input.value = "";
+      });
+      quizArea.querySelectorAll("select").forEach(select => select.value = "");
+      quizArea.querySelectorAll("textarea").forEach(textarea => textarea.value = "");
+      quizArea.querySelectorAll(".quiz-card").forEach(card => {
+        card.classList.remove("correct", "wrong");
+        card.querySelector(".feedback").textContent = "";
+      });
+      document.querySelector("#quizScore").textContent = "Noch nicht ausgewertet";
+    }
+
+    document.querySelector("#overviewBtn").addEventListener("click", showOverview);
+    document.querySelector("#resetProgressBtn").addEventListener("click", () => {
+      completed.clear();
+      removeStorage("krummerHundM8Done");
+      renderNavigation();
+      updateProgress();
+    });
+    stationDoneBtn.addEventListener("click", () => {
+      if (activeId !== "overview") {
+        completed.add(activeId);
+        setStorage("krummerHundM8Done", [...completed]);
+        renderNavigation();
+        updateProgress();
+      }
+    });
+
+    renderNavigation();
+    renderStampGrid();
+    updateProgress();
+  </script>
+</body>
+</html>

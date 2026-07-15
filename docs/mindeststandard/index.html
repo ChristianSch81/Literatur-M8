@@ -270,6 +270,16 @@
       margin-right: 4px;
     }
 
+    .right-icon-link {
+      display: inline-flex;
+      border-radius: 7px;
+    }
+
+    .right-icon-link:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
     .right-icon {
       width: 46px;
       height: 46px;
@@ -1074,7 +1084,9 @@
         </div>
         <div class="top-actions">
           <div class="right-icons" aria-label="Schul- und Bibliotheksicons">
-            <img class="right-icon" src="../assets/img/asw-logo.png" alt="ASW Logo">
+            <a class="right-icon-link" href="https://asw-wutoeschingen.de" target="_blank" rel="noopener noreferrer" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+              <img class="right-icon" src="../assets/img/asw-logo.png" alt="ASW Logo">
+            </a>
             <img class="right-icon" src="../assets/img/bibliothek-icon.png" alt="Literatur Icon">
           </div>
           <button class="action" id="overviewBtn" type="button">Überblick</button>

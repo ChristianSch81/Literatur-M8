@@ -9,11 +9,38 @@
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100vh; display: grid; place-items: center; color: #262020; background: #f7f1f1; }
     main { width: min(940px, calc(100% - 32px)); margin: 24px 0; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 18px 45px rgba(60, 25, 30, .14); }
-    h1 { margin: 0 0 10px; color: #831522; }
+    h1 { margin: 0; color: #fff; font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.05; }
     p { color: #676060; }
+    .title-bar { padding: 26px 30px; border-radius: 10px; color: #fff; background: linear-gradient(115deg, #831522, #b51f2e); box-shadow: 0 10px 24px rgba(131, 21, 34, .22); }
+    .title-bar-content { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    .title-bar p { margin: 8px 0 0; color: #fff; }
+    .title-subtitle { font-size: 1.08rem; }
+    .title-icons { display: flex; flex: 0 0 auto; align-items: center; gap: 10px; }
+    .title-icon-link { display: block; border-radius: 10px; }
+    .title-icon-link:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .title-icon { display: block; width: 62px; height: 62px; padding: 5px; object-fit: contain; border: 2px solid rgba(255,255,255,.82); border-radius: 10px; background: #fff; box-shadow: 0 4px 12px rgba(55,10,16,.24); }
     .hero-image { display: block; width: 100%; max-height: 300px; margin: 22px 0 6px; object-fit: contain; border-radius: 10px; background: #fff; }
+    .transfer-info { margin-top: 24px; padding: 14px 16px; border: 1px solid #b9ddd5; border-left: 4px solid #2a8b75; border-radius: 9px; background: #f1faf8; font-size: .88rem; line-height: 1.45; }
+    .transfer-info h2 { margin: 0 0 6px; color: #1f6e5e; font-size: 1rem; }
+    .transfer-info p { margin: 5px 0; color: #385c55; }
+    .transfer-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 10px; }
+    .transfer-step { padding: 9px 11px; border-radius: 7px; background: #fff; }
+    .transfer-step strong { display: block; margin-bottom: 4px; color: #831522; }
+    .transfer-note { font-size: .82rem; font-weight: 650; }
     .packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 28px; }
     .package { padding: 20px; border: 1px solid #ead9dc; border-radius: 12px; background: #fffafa; }
+    .progress-overview { padding: 20px; border: 1px solid #b9ddd5; border-radius: 12px; background: #f4fbf9; }
+    .progress-overview h2 { margin: 0; color: #1f6e5e; font-size: 1.15rem; }
+    .progress-overview > p { margin: 5px 0 15px; font-size: .88rem; }
+    .overview-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .overview-row { display: grid; justify-items: center; gap: 7px; padding: 11px 7px; border: 1px solid #d3e8e3; border-radius: 9px; background: #fff; }
+    .overview-code { color: #831522; font-weight: 850; }
+    .summary-ring { --test: 0; --practice: 0; position: relative; width: 82px; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(#b51f2e calc(var(--test) * 1%), #e7dfe1 0); }
+    .summary-ring::before { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: #fff; }
+    .summary-practice-ring { position: absolute; inset: 14px; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(#2a8b75 calc(var(--practice) * 1%), #e7dfe1 0); }
+    .summary-practice-ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: #fff; }
+    .summary-ring-value { position: relative; z-index: 1; color: #3b3233; font-size: .78rem; font-weight: 800; }
+    .summary-legend { display: grid; gap: 3px; color: #51494a; font-size: .72rem; font-weight: 700; text-align: center; }
     .package-main { display: grid; grid-template-columns: 112px 1fr; gap: 18px; align-items: center; color: inherit; text-decoration: none; }
     .package-main:hover .package-title, .package-main:focus-visible .package-title { color: #831522; text-decoration: underline; }
     .package-title { display: block; color: #b51f2e; font-size: 1.15rem; font-weight: 700; }
@@ -33,9 +60,19 @@
     button.secondary { color: #831522; background: #fff; }
     button.secondary:hover, button.secondary:focus-visible { color: #fff; background: #831522; }
     .status { min-height: 1.25em; margin: 9px 0 0; color: #676060; font-size: .84rem; }
+    .page-footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ead9dc; text-align: center; }
+    .footer-author { margin: 0; color: #4e4647; font-size: .95rem; font-weight: 700; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     @media (max-width: 560px) {
       main { padding: 24px 18px; }
+      .title-bar { padding: 22px 20px; }
+      .title-bar-content { align-items: flex-start; flex-direction: column; gap: 18px; }
+      .title-icon { width: 54px; height: 54px; }
+      .transfer-steps { grid-template-columns: 1fr; }
+      .overview-list { gap: 6px; }
+      .overview-row { padding: 8px 3px; }
+      .summary-ring { width: 68px; }
+      .summary-legend { font-size: .66rem; }
       .packages { grid-template-columns: 1fr; }
       .package-main { grid-template-columns: 92px 1fr; gap: 14px; }
       .dual-ring { width: 90px; }
@@ -44,9 +81,21 @@
 </head>
 <body>
   <main>
-    <h1>Krummer Hund</h1>
+    <header class="title-bar">
+      <div class="title-bar-content">
+        <div>
+          <h1>Krummer Hund</h1>
+          <p class="title-subtitle">Interaktive Materialien für Deutsch – Literatur Phase 8</p>
+        </div>
+        <div class="title-icons" aria-label="Alemannenschule und Literatur">
+          <a class="title-icon-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener noreferrer" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+            <img class="title-icon" src="./assets/img/asw-logo.png" alt="ASW-Logo">
+          </a>
+          <img class="title-icon" src="./assets/img/bibliothek-icon.png" alt="Literatur-Icon">
+        </div>
+      </div>
+    </header>
     <img class="hero-image" src="./assets/img/Daniel_mit_Ozzy-neu.jpg" alt="Aquarellillustration von Daniel und seinem Hund Ozzy">
-    <p>Interaktive Materialien für Deutsch – Literatur Phase 8</p>
 
     <section class="packages" aria-label="Material auswählen">
       <article class="package" data-standard="M8" data-prefix="krummerHundM8">
@@ -92,11 +141,75 @@
         </div>
         <p class="status" aria-live="polite"></p>
       </article>
+
+      <article class="package" data-standard="E8" data-prefix="krummerHundE8">
+        <a class="package-main" href="./expertenstandard/">
+          <div class="dual-ring" role="img" aria-label="Expertenstandard: Abschlusstest 0 Prozent, Übungen 0 Prozent">
+            <div class="practice-ring"><span class="ring-value">0%</span></div>
+          </div>
+          <div>
+            <span class="package-title">Expertenstandard</span>
+            <span class="package-copy">Charakterisierung auf Expertenniveau</span>
+            <span class="legend" aria-hidden="true">
+              <span><i></i><b class="test-label">Test: 0%</b></span>
+              <span><i class="practice-dot"></i><b class="practice-label">Übungen: 0%</b></span>
+            </span>
+          </div>
+        </a>
+        <div class="package-actions">
+          <button type="button" data-action="export">Export</button>
+          <button class="secondary" type="button" data-action="import">Import</button>
+          <input class="sr-only" type="file" accept="application/json,.json" data-import-file aria-label="Fortschrittsdatei für den Expertenstandard auswählen">
+        </div>
+        <p class="status" aria-live="polite"></p>
+      </article>
+
+      <article class="progress-overview" aria-labelledby="overall-progress-title">
+        <h2 id="overall-progress-title">Gesamtübersicht</h2>
+        <p>Dein Fortschritt in M, R und E auf einen Blick.</p>
+        <div class="overview-list">
+          <div class="overview-row" data-summary-standard="M8">
+            <span class="overview-code">M</span>
+            <div class="summary-ring" role="img" aria-label="Mindeststandard: Test 0 Prozent, Übungen 0 Prozent"><div class="summary-practice-ring"><span class="summary-ring-value">0%</span></div></div>
+            <div class="summary-legend"><span class="summary-test-value">Test: 0 %</span><span class="summary-practice-value">Übungen: 0 %</span></div>
+          </div>
+          <div class="overview-row" data-summary-standard="R8">
+            <span class="overview-code">R</span>
+            <div class="summary-ring" role="img" aria-label="Regelstandard: Test 0 Prozent, Übungen 0 Prozent"><div class="summary-practice-ring"><span class="summary-ring-value">0%</span></div></div>
+            <div class="summary-legend"><span class="summary-test-value">Test: 0 %</span><span class="summary-practice-value">Übungen: 0 %</span></div>
+          </div>
+          <div class="overview-row" data-summary-standard="E8">
+            <span class="overview-code">E</span>
+            <div class="summary-ring" role="img" aria-label="Expertenstandard: Test 0 Prozent, Übungen 0 Prozent"><div class="summary-practice-ring"><span class="summary-ring-value">0%</span></div></div>
+            <div class="summary-legend"><span class="summary-test-value">Test: 0 %</span><span class="summary-practice-value">Übungen: 0 %</span></div>
+          </div>
+        </div>
+      </article>
     </section>
+
+    <aside class="transfer-info" aria-labelledby="transfer-title">
+      <h2 id="transfer-title">So sicherst du deinen Lernfortschritt auf dem iPad</h2>
+      <p>Deine Ergebnisse bleiben normalerweise nur in diesem Browser gespeichert. Mit Export kannst du eine Sicherungskopie erstellen und später wieder einlesen.</p>
+      <div class="transfer-steps">
+        <div class="transfer-step">
+          <strong>Export = Fortschritt sichern</strong>
+          Tippe beim passenden Paket auf <b>Export</b>. Das iPad speichert eine kleine Datei meist im Ordner <b>Downloads</b> der App „Dateien“.
+        </div>
+        <div class="transfer-step">
+          <strong>Import = Fortschritt zurückholen</strong>
+          Tippe beim gleichen Paket auf <b>Import</b>. Wähle anschließend deine gespeicherte Datei in der App „Dateien“ aus.
+        </div>
+      </div>
+      <p class="transfer-note">Wichtig: Jedes Paket hat eine eigene Datei. Eine M-Datei gehört zum Mindeststandard, eine R-Datei zum Regelstandard und eine E-Datei zum Expertenstandard.</p>
+    </aside>
+
+    <footer class="page-footer">
+      <p class="footer-author">Christian Schwend - Alemannenschule Wutöschingen</p>
+    </footer>
   </main>
 
   <script>
-    const packageNames = { M8: "Mindeststandard", R8: "Regelstandard" };
+    const packageNames = { M8: "Mindeststandard", R8: "Regelstandard", E8: "Expertenstandard" };
 
     function readJson(key, fallback) {
       try {
@@ -134,6 +247,20 @@
       card.querySelector(".ring-value").textContent = stats.test + "%";
       card.querySelector(".test-label").textContent = "Test: " + stats.test + "%";
       card.querySelector(".practice-label").textContent = "Übungen: " + stats.practice + "%";
+    }
+
+    function renderOverallProgress() {
+      document.querySelectorAll("[data-summary-standard]").forEach(row => {
+        const card = document.querySelector('.package[data-standard="' + row.dataset.summaryStandard + '"]');
+        const stats = packageStats(card);
+        const ring = row.querySelector(".summary-ring");
+        ring.style.setProperty("--test", stats.test);
+        ring.style.setProperty("--practice", stats.practice);
+        ring.setAttribute("aria-label", packageNames[row.dataset.summaryStandard] + ": Test " + stats.test + " Prozent, Übungen " + stats.practice + " Prozent");
+        row.querySelector(".summary-ring-value").textContent = stats.test + "%";
+        row.querySelector(".summary-test-value").textContent = "Test: " + stats.test + " %";
+        row.querySelector(".summary-practice-value").textContent = "Übungen: " + stats.practice + " %";
+      });
     }
 
     function exportProgress(card) {
@@ -182,6 +309,7 @@
             if (key.startsWith(prefix) && typeof value === "string") localStorage.setItem(key, value);
           });
           renderPackage(card);
+          renderOverallProgress();
           status.textContent = "Fortschritt wurde importiert.";
         } catch (error) {
           status.textContent = error.message || "Die Datei konnte nicht importiert werden.";
@@ -204,9 +332,11 @@
       });
       renderPackage(card);
     });
+    renderOverallProgress();
 
     window.addEventListener("pageshow", () => {
       document.querySelectorAll(".package").forEach(renderPackage);
+      renderOverallProgress();
     });
   </script>
 </body>

@@ -309,6 +309,18 @@
       color: var(--accent-dark);
     }
 
+    .package-selection-link {
+      text-decoration: none;
+    }
+
+    .package-selection-link:hover,
+    .package-selection-link:focus-visible {
+      background: #fff;
+      color: var(--accent-dark);
+      outline: 3px solid rgba(255,255,255,.45);
+      outline-offset: 2px;
+    }
+
     .content {
       max-width: 1200px;
       margin: 0 auto;
@@ -401,6 +413,115 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-top: 18px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .stats-card {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .dual-ring {
+      --test-score: 0;
+      --practice-score: 0;
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) calc(var(--test-score) * 1%), #eadfe1 0);
+    }
+
+    .practice-ring {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+      border-radius: 50%;
+      background: conic-gradient(var(--teal) calc(var(--practice-score) * 1%), #dcebea 0);
+    }
+
+    .ring-center {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .stats-copy strong,
+    .stats-copy span {
+      display: block;
+    }
+
+    .stats-copy span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .stats-legend,
+    .progress-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .legend-dot.practice {
+      background: var(--teal);
+    }
+
+    .progress-tools button {
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 9px 14px;
+      background: #fff;
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .progress-tools button:hover,
+    .progress-tools button:focus-visible {
+      background: var(--accent-soft);
+    }
+
+    .import-status {
+      color: var(--muted);
+      font-size: .88rem;
     }
 
     .stamp-card {
@@ -682,6 +803,12 @@
     .operator-help strong {
       color: var(--accent-dark);
     }
+    .hint-wrap { margin: 12px 0; }
+    .hint-button { min-width: 48px; min-height: 42px; padding: 6px 12px; border: 2px solid #2a8b75; border-radius: 999px; color: #1d6658; background: #fff; font-weight: 800; }
+    .hint-button:hover, .hint-button:focus-visible { color: #fff; background: #2a8b75; outline: 3px solid rgba(42,139,117,.24); outline-offset: 2px; }
+    .hint-panel { margin: 9px 0 0; padding: 12px 14px; border-left: 4px solid #2a8b75; border-radius: 0 7px 7px 0; color: #31544d; background: #edf8f5; }
+    .hint-panel[hidden] { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     .choice-list,
     .quiz-options {
@@ -1089,6 +1216,7 @@
             </a>
             <img class="right-icon" src="../assets/img/bibliothek-icon.png" alt="Literatur Icon">
           </div>
+          <a class="action package-selection-link" href="../?auswahl=1">Zurück zur Paketauswahl</a>
           <button class="action" id="overviewBtn" type="button">Überblick</button>
           <button class="action light hidden" id="stationDoneBtn" type="button">Station abhaken</button>
         </div>
@@ -1140,6 +1268,22 @@
  <li><div><strong>Ich kann wichtige Orte, Gegenstände und Hinweise passenden Figuren oder Ereignissen zuordnen.</strong><span>Materialien: 3, 4, 5, 6, 7, 9</span></div></li>
             <li><div><strong>Ich kann zentrale Themen wie Trauer, Vertrauen, Freundschaft, Verdacht und Verantwortung an einfachen Romanbeispielen wiedererkennen.</strong><span>Materialien: 3 bis 9</span></div></li>
           </ul>
+        </section>
+
+        <section class="section" id="statisticsOverview">
+          <h2>Deine Lernstatistik</h2>
+          <p class="small-note">Der äußere rote Ring zeigt dein Ergebnis im Abschlusstest. Der innere grüne Ring zeigt, wie viele deiner bereits geprüften Übungsaufgaben richtig waren.</p>
+          <div class="stats-grid" id="statsGrid"></div>
+          <div class="stats-legend" aria-label="Legende">
+            <span class="legend-item"><span class="legend-dot" aria-hidden="true"></span>Abschlusstest</span>
+            <span class="legend-item"><span class="legend-dot practice" aria-hidden="true"></span>Übungsaufgaben</span>
+          </div>
+          <div class="progress-tools">
+            <button id="exportProgressBtn" type="button">Export</button>
+            <button id="importProgressBtn" type="button">Import</button>
+            <input id="importProgressFile" type="file" accept="application/json,.json" hidden>
+            <span class="import-status" id="importStatus" aria-live="polite"></span>
+          </div>
         </section>
 
         <section class="section" id="stampOverview">
@@ -2433,7 +2577,27 @@
     ];
 
     let completed = new Set(getStorage("krummerHundM8Done", []));
+    let exerciseResults = getStorage("krummerHundM8ExerciseResults", {});
+    let quizResults = getStorage("krummerHundM8QuizResults", []);
     let activeId = "overview";
+
+    const statisticsCategories = [
+      { id: "operatoren", label: "Operatoren" },
+      { id: "figuren", label: "Figuren" },
+      { id: "etappe1", label: "Leseetappe 1" },
+      { id: "etappe2", label: "Leseetappe 2" },
+      { id: "etappe3", label: "Leseetappe 3" },
+      { id: "etappe4", label: "Leseetappe 4" },
+      { id: "etappe5", label: "Leseetappe 5" },
+      { id: "themen", label: "Themen" }
+    ];
+
+    const quizCategoryMap = [
+      "figuren", "figuren", "etappe1", "etappe1", "etappe1",
+      "etappe2", "etappe2", "etappe2", "etappe3", "etappe3",
+      "themen", "etappe4", "etappe4", "etappe5", "etappe5",
+      "operatoren", "etappe3", "figuren", "themen", "themen"
+    ];
 
     const stationNav = document.querySelector("#stationNav");
     const stampGrid = document.querySelector("#stampGrid");
@@ -2446,6 +2610,9 @@
     const progressText = document.querySelector("#progressText");
     const progressBar = document.querySelector("#progressBar");
     const stationDoneBtn = document.querySelector("#stationDoneBtn");
+    const statisticsOverview = document.querySelector("#statisticsOverview");
+    const statsGrid = document.querySelector("#statsGrid");
+    const importStatus = document.querySelector("#importStatus");
 
     function escapeHtml(value) {
       return String(value)
@@ -2473,6 +2640,135 @@
         .split(/[.!?\n]+/)
         .map(part => normalize(part))
         .filter(part => part.length > 10).length;
+    }
+
+    function recordExerciseResult(stationId, taskIndex, ok) {
+      if (!stationId || stationId === "test") return;
+      exerciseResults[stationId] = exerciseResults[stationId] || {};
+      exerciseResults[stationId][taskIndex] = !!ok;
+      setStorage("krummerHundM8ExerciseResults", exerciseResults);
+      renderStatistics();
+    }
+
+    function finalStatsFor(categoryId) {
+      const indices = quizCategoryMap
+        .map((category, index) => category === categoryId ? index : -1)
+        .filter(index => index >= 0);
+      const evaluated = indices.filter(index => typeof quizResults[index] === "boolean");
+      const correct = evaluated.filter(index => quizResults[index]).length;
+      return {
+        attempted: evaluated.length,
+        total: indices.length,
+        percent: evaluated.length ? Math.round(correct / evaluated.length * 100) : 0
+      };
+    }
+
+    function practiceStatsFor(categoryId) {
+      const values = Object.values(exerciseResults[categoryId] || {}).filter(value => typeof value === "boolean");
+      const correct = values.filter(Boolean).length;
+      return {
+        attempted: values.length,
+        percent: values.length ? Math.round(correct / values.length * 100) : 0
+      };
+    }
+
+    function renderStatistics() {
+      if (!statsGrid) return;
+      statsGrid.innerHTML = statisticsCategories.map(category => {
+        const finalStats = finalStatsFor(category.id);
+        const practiceStats = practiceStatsFor(category.id);
+        const finalLabel = finalStats.attempted ? `${finalStats.percent}%` : "–";
+        const aria = `${category.label}: Abschlusstest ${finalStats.attempted ? finalStats.percent + " Prozent" : "noch nicht ausgewertet"}, Übungen ${practiceStats.attempted ? practiceStats.percent + " Prozent" : "noch nicht geprüft"}.`;
+        return `
+          <article class="stats-card">
+            <div class="dual-ring" style="--test-score:${finalStats.percent};--practice-score:${practiceStats.percent}" role="img" aria-label="${escapeHtml(aria)}">
+              <div class="practice-ring">
+                <span class="ring-center">${finalLabel}</span>
+              </div>
+            </div>
+            <div class="stats-copy">
+              <strong>${escapeHtml(category.label)}</strong>
+              <span>Test: ${finalStats.attempted ? `${finalStats.percent}% (${finalStats.attempted}/${finalStats.total})` : "noch offen"}</span>
+              <span>Übung: ${practiceStats.attempted ? `${practiceStats.percent}% (${practiceStats.attempted} geprüft)` : "noch offen"}</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function captureStationState(stationId) {
+      const controls = [...stationArea.querySelectorAll("input, select, textarea")].map(control => ({
+        type: control.type,
+        value: control.value,
+        checked: !!control.checked
+      }));
+      setStorage(`krummerHundM8State_${stationId}`, controls);
+    }
+
+    function restoreStationState(stationId) {
+      const saved = getStorage(`krummerHundM8State_${stationId}`, []);
+      const controls = [...stationArea.querySelectorAll("input, select, textarea")];
+      controls.forEach((control, index) => {
+        const state = saved[index];
+        if (!state) return;
+        if (control.type === "radio" || control.type === "checkbox") control.checked = !!state.checked;
+        else control.value = state.value ?? "";
+      });
+      controls.forEach(control => {
+        const eventName = control.tagName === "SELECT" || control.type === "radio" || control.type === "checkbox" ? "change" : "input";
+        control.addEventListener(eventName, () => captureStationState(stationId));
+      });
+    }
+
+    function exportProgress() {
+      const storage = {};
+      for (let index = 0; index < localStorage.length; index++) {
+        const key = localStorage.key(index);
+        if (key && key.startsWith("krummerHundM8")) storage[key] = localStorage.getItem(key);
+      }
+      const payload = {
+        format: "krummer-hund-progress",
+        version: 1,
+        standard: "M8",
+        exportedAt: new Date().toISOString(),
+        storage
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `krummer-hund-m8-fortschritt-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      importStatus.textContent = "Fortschritt wurde exportiert.";
+    }
+
+    function importProgress(file) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          const payload = JSON.parse(String(reader.result || ""));
+          if (payload.format !== "krummer-hund-progress" || payload.standard !== "M8" || !payload.storage) {
+            throw new Error("Die Datei gehört nicht zum Mindeststandard.");
+          }
+          const keysToRemove = [];
+          for (let index = 0; index < localStorage.length; index++) {
+            const key = localStorage.key(index);
+            if (key && key.startsWith("krummerHundM8")) keysToRemove.push(key);
+          }
+          keysToRemove.forEach(key => localStorage.removeItem(key));
+          Object.entries(payload.storage).forEach(([key, value]) => {
+            if (key.startsWith("krummerHundM8") && typeof value === "string") localStorage.setItem(key, value);
+          });
+          importStatus.textContent = "Fortschritt wurde importiert. Die Seite wird neu geladen.";
+          window.setTimeout(() => window.location.reload(), 500);
+        } catch (error) {
+          importStatus.textContent = error.message || "Die Datei konnte nicht importiert werden.";
+        }
+      });
+      reader.readAsText(file);
     }
 
     function renderNavigation() {
@@ -2550,6 +2846,13 @@
         body += `<div class="operator-help"><strong>Antwortform:</strong> ${escapeHtml(task.operatorHelp)}</div>`;
       }
       body += `<p>${escapeHtml(task.prompt)}</p>`;
+      if (task.type === "text" || task.type === "cloze") {
+        const hintId = `station_hint_${index}`;
+        const hint = task.type === "cloze"
+          ? "Lies den ganzen Satz zuerst ohne Lücken. Achte anschließend auf Grammatik, Satzbau und die Wörter direkt vor und nach jeder Lücke."
+          : "Markiere den Arbeitsauftrag und sammle zuerst zwei oder drei passende Stichwörter aus dem Roman. Ordne sie danach zu ganzen Sätzen: Aussage – Beispiel – kurze Erklärung.";
+        body += `<div class="hint-wrap"><button class="hint-button" type="button" aria-expanded="false" aria-controls="${hintId}" title="Hinweis anzeigen"><span aria-hidden="true">🙂?</span><span class="sr-only">Hinweis anzeigen</span></button><div class="hint-panel" id="${hintId}" hidden><strong>Denkanstoß:</strong> ${escapeHtml(hint)}</div></div>`;
+      }
       if (task.type === "single" || task.type === "multiple") {
         body += `<div class="choice-list">`;
         task.options.forEach((option, optionIndex) => {
@@ -2610,6 +2913,19 @@
       `;
     }
 
+    function bindHintButtons(container) {
+      container.querySelectorAll(".hint-button").forEach(button => {
+        button.addEventListener("click", () => {
+          const panel = document.getElementById(button.getAttribute("aria-controls"));
+          const open = button.getAttribute("aria-expanded") === "true";
+          button.setAttribute("aria-expanded", String(!open));
+          button.title = open ? "Hinweis anzeigen" : "Hinweis ausblenden";
+          button.querySelector(".sr-only").textContent = button.title;
+          panel.hidden = open;
+        });
+      });
+    }
+
     function checkTask(card, task) {
       let ok = false;
       let solution = "";
@@ -2666,6 +2982,7 @@
       card.dataset.solved = ok ? "true" : "false";
       feedback.className = "feedback " + (ok ? "good" : "bad");
       feedback.textContent = ok ? "Richtig oder gut nachvollziehbar." : "Noch nicht ganz. Hilfe: " + solution;
+      recordExerciseResult(activeId, Number(card.dataset.taskIndex), ok);
       updateStationAutoDone();
     }
 
@@ -2674,6 +2991,7 @@
       overview.classList.add("hidden");
       stampOverview.classList.add("hidden");
       targetOverview.classList.add("hidden");
+      statisticsOverview.classList.add("hidden");
       stationDoneBtn.classList.remove("hidden");
       activeId = station.id;
       currentPath.textContent = station.title;
@@ -2692,7 +3010,9 @@
           const task = station.tasks[Number(card.dataset.taskIndex)];
           card.querySelector(".check-btn").addEventListener("click", () => checkTask(card, task));
         });
+        bindHintButtons(stationArea);
       }
+      restoreStationState(station.id);
       renderNavigation();
       updateProgress();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2720,12 +3040,14 @@
       overview.classList.remove("hidden");
       stampOverview.classList.remove("hidden");
       targetOverview.classList.remove("hidden");
+      statisticsOverview.classList.remove("hidden");
       stationArea.innerHTML = "";
       quizArea.classList.add("hidden");
       stationDoneBtn.classList.add("hidden");
       currentPath.textContent = "Überblick";
       renderNavigation();
       updateProgress();
+      renderStatistics();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -2737,7 +3059,7 @@
         `).join("")}</div>`;
       }
       if (q.type === "fill") {
-        return `<input type="text" aria-label="Antwort zu Aufgabe ${index + 1}" placeholder="Antwort eingeben">`;
+        return `<div class="hint-wrap"><button class="hint-button" type="button" aria-expanded="false" aria-controls="quiz_hint_${index}" title="Hinweis anzeigen"><span aria-hidden="true">🙂?</span><span class="sr-only">Hinweis anzeigen</span></button><div class="hint-panel" id="quiz_hint_${index}" hidden><strong>Denkanstoß:</strong> Suche im Aufgabensatz nach dem entscheidenden Fachwort und prüfe, ob deine Antwort grammatisch in den Satz passt.</div></div><input type="text" aria-label="Antwort zu Aufgabe ${index + 1}" placeholder="Antwort eingeben">`;
       }
       if (q.type === "assign") {
         return q.items.map(item => `
@@ -2762,7 +3084,7 @@
         `).join("");
       }
       if (q.type === "text") {
-        return `<textarea data-min="${q.min}" data-keywords="${escapeHtml(q.keywords.join("|"))}" placeholder="Antwort in ganzen Sätzen."></textarea>`;
+        return `<div class="hint-wrap"><button class="hint-button" type="button" aria-expanded="false" aria-controls="quiz_hint_${index}" title="Hinweis anzeigen"><span aria-hidden="true">🙂?</span><span class="sr-only">Hinweis anzeigen</span></button><div class="hint-panel" id="quiz_hint_${index}" hidden><strong>Denkanstoß:</strong> Plane deine Antwort mit drei Bausteinen: klare Aussage, passende Romansituation und Erklärung des Zusammenhangs.</div></div><textarea data-min="${q.min}" data-keywords="${escapeHtml(q.keywords.join("|"))}" placeholder="Antwort in ganzen Sätzen."></textarea>`;
       }
       return "";
     }
@@ -2794,6 +3116,7 @@
       `;
       document.querySelector("#quizCheckBtn").addEventListener("click", checkQuiz);
       document.querySelector("#quizResetBtn").addEventListener("click", resetQuiz);
+      bindHintButtons(quizArea);
     }
 
     function scoreQuizCard(card) {
@@ -2859,8 +3182,10 @@
 
     function checkQuiz() {
       let correct = 0;
+      const currentResults = [];
       quizArea.querySelectorAll(".quiz-card").forEach(card => {
         const result = scoreQuizCard(card);
+        currentResults[Number(card.dataset.index)] = result.ok;
         card.classList.toggle("correct", result.ok);
         card.classList.toggle("wrong", !result.ok);
         const feedback = card.querySelector(".feedback");
@@ -2885,8 +3210,11 @@
         completed.delete("test");
       }
       setStorage("krummerHundM8Done", [...completed]);
+      quizResults = currentResults;
+      setStorage("krummerHundM8QuizResults", quizResults);
       renderNavigation();
       updateProgress();
+      renderStatistics();
     }
 
     function resetQuiz() {
@@ -2901,14 +3229,25 @@
         card.querySelector(".feedback").textContent = "";
       });
       document.querySelector("#quizScore").textContent = "Noch nicht ausgewertet";
+      quizResults = [];
+      removeStorage("krummerHundM8QuizResults");
+      renderStatistics();
     }
 
     document.querySelector("#overviewBtn").addEventListener("click", showOverview);
     document.querySelector("#resetProgressBtn").addEventListener("click", () => {
       completed.clear();
-      removeStorage("krummerHundM8Done");
+      exerciseResults = {};
+      quizResults = [];
+      const keysToRemove = [];
+      for (let index = 0; index < localStorage.length; index++) {
+        const key = localStorage.key(index);
+        if (key && key.startsWith("krummerHundM8")) keysToRemove.push(key);
+      }
+      keysToRemove.forEach(key => localStorage.removeItem(key));
       renderNavigation();
       updateProgress();
+      renderStatistics();
     });
     stationDoneBtn.addEventListener("click", () => {
       if (activeId !== "overview") {
@@ -2918,10 +3257,20 @@
         updateProgress();
       }
     });
+    document.querySelector("#exportProgressBtn").addEventListener("click", exportProgress);
+    document.querySelector("#importProgressBtn").addEventListener("click", () => {
+      document.querySelector("#importProgressFile").click();
+    });
+    document.querySelector("#importProgressFile").addEventListener("change", event => {
+      const file = event.target.files && event.target.files[0];
+      if (file) importProgress(file);
+      event.target.value = "";
+    });
 
     renderNavigation();
     renderStampGrid();
     updateProgress();
+    renderStatistics();
   </script>
 </body>
 </html>
